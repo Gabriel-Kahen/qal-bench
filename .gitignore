@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+paper/build/
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc

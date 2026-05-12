@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite both the software artifact and the manuscript listed in preferred-citation."
+title: "QALBench: Audit Protocol and Reference Implementation for Quantum Artificial-Life Claims"
+type: software
+authors:
+  - family-names: Kahen
+    given-names: Gabriel
+    email: gabekahen@gmail.com
+contact:
+  - family-names: Kahen
+    given-names: Gabriel
+    email: gabekahen@gmail.com
+version: 0.2.0
+license: MIT
+repository-code: "https://github.com/Gabriel-Kahen/qal-bench"
+url: "https://github.com/Gabriel-Kahen/qal-bench"
+abstract: "A claim-specific audit protocol and reference implementation for separating artificial-life adequacy, quantum-resource relevance, and computational nonclassicality claims in quantum artificial-life experiments."
+keywords:
+  - quantum artificial life
+  - quantum information
+  - artificial life
+  - reproducibility
+  - benchmark
+preferred-citation:
+  type: generic
+  title: "QALBench: An Audit Protocol and Reference Implementation for Quantum Artificial-Life Claims"
+  authors:
+    - family-names: Kahen
+      given-names: Gabriel
+      email: gabekahen@gmail.com
+  year: 2026
+  month: 5
+  url: "https://github.com/Gabriel-Kahen/qal-bench"
+  abstract: "A paper and reference implementation for separating population-level artificial-life records, quantum-resource ablations, and computational-nonclassicality claims in quantum artificial-life experiments."
+# Before submission, replace the development version with a clean release tag,
+# commit, date-released, and DOI identifiers; see ARCHIVE_RELEASE.md.

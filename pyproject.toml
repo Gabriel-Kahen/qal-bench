@@ -1,0 +1,66 @@
+[build-system]
+requires = ["setuptools==80.9.0", "wheel==0.45.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "qalbench"
+version = "0.2.0"
+description = "Claim-specific benchmark suite for quantum artificial-life resource and population dynamics."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [
+  { name = "Gabriel Kahen", email = "gabekahen@gmail.com" }
+]
+keywords = [
+  "quantum artificial life",
+  "quantum information",
+  "benchmark",
+  "density matrix",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Physics",
+]
+dependencies = [
+  "matplotlib>=3.8,<4",
+  "numpy>=1.26,<3",
+]
+
+[project.urls]
+Homepage = "https://github.com/Gabriel-Kahen/qal-bench"
+Repository = "https://github.com/Gabriel-Kahen/qal-bench"
+Issues = "https://github.com/Gabriel-Kahen/qal-bench/issues"
+Manuscript = "https://github.com/Gabriel-Kahen/qal-bench/tree/main/paper"
+
+[project.scripts]
+qalbench-sweep = "qalbench.sweep:main"
+qalbench-verify = "qalbench.verify:main"
+qalbench-population-sweep = "qalbench.population_sweep:main"
+qalbench-population-verify = "qalbench.population_verify:main"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+qalbench = [
+  "data/results/qalbench_sweep.csv",
+  "data/results/qalbench_sweep_metadata.json",
+  "data/results/qalbench_population.csv",
+  "data/results/qalbench_population_timeseries.csv",
+  "data/results/qalbench_population_individuals.csv",
+  "data/results/qalbench_population_birth_events.csv",
+  "data/results/qalbench_population_attempts.csv.gz",
+  "data/results/qalbench_population_metadata.json",
+  "data/results/figures/*.png",
+  "data/paper/figures/*.png",
+]
