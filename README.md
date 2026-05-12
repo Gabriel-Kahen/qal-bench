@@ -117,9 +117,9 @@ Outputs:
 - `results/qalbench_sweep_metadata.json`
 - `results/qalbench_population.csv`
 - `results/qalbench_population_timeseries.csv`
-- `results/qalbench_population_individuals.csv`
-- `results/qalbench_population_birth_events.csv`
-- `results/qalbench_population_attempts.csv.gz`
+- `results/qalbench_population_individuals.csv.xz`
+- `results/qalbench_population_birth_events.csv.xz`
+- `results/qalbench_population_attempts.csv.xz`
 - `results/qalbench_population_metadata.json`
 - `results/figures/z_population.png`
 - `results/figures/quantum_diagnostics.png`

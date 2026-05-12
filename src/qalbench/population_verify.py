@@ -8,6 +8,7 @@ import csv
 import gzip
 import hashlib
 import json
+import lzma
 import sys
 from contextlib import contextmanager
 from pathlib import Path
@@ -17,7 +18,9 @@ from typing import Iterator, TextIO
 from .population_sweep import (
     ATTEMPTS_FILENAME,
     ATTEMPT_FIELDS,
+    BIRTH_EVENTS_FILENAME,
     BIRTH_EVENT_FIELDS,
+    INDIVIDUALS_FILENAME,
     INDIVIDUAL_FIELDS,
     MODELS,
     SCENARIOS,
@@ -32,20 +35,20 @@ PACKAGE_ROOT = Path(__file__).resolve().parent
 EXPECTED_ARTIFACT = "qalbench population benchmark"
 EXPECTED_SCHEMA_VERSION = 2
 EXPECTED_FIRST_SEED = 11
-EXPECTED_SEED_COUNT = 10
+EXPECTED_SEED_COUNT = 100
 EXPECTED_STEPS = 64
 EXPECTED_SUMMARY_ROW_COUNT = len(SCENARIOS) * len(MODELS) * EXPECTED_SEED_COUNT
 EXPECTED_TRAJECTORY_ROW_COUNT = EXPECTED_SUMMARY_ROW_COUNT * (EXPECTED_STEPS + 1)
-EXPECTED_ATTEMPT_ROW_COUNT = 495700
-EXPECTED_SUMMARY_SHA256 = "cbbb8444572e094dea671a7a02c43f5dc2b1d07bedb57dbc0376fb073bd93d5d"
-EXPECTED_TRAJECTORY_SHA256 = "3a4d14c058450fe68892055f47036d94bd311a3554bfe8e38dfaf85553c7e962"
-EXPECTED_INDIVIDUAL_SHA256 = "3d4dbe7d944799ef49f44d2cb70353c1c2ffe4398f9dd91842cd78b55ef73a5e"
-EXPECTED_BIRTH_EVENT_SHA256 = "a22c242784f5f64edc59973760751a07759f88facf0161d6a60c7f112e4405da"
-EXPECTED_ATTEMPT_SHA256 = "9b423ae8d02c908f5fc98685f9f272290fbfc985db6506958ce1a21c03b818b1"
+EXPECTED_ATTEMPT_ROW_COUNT = 4971676
+EXPECTED_SUMMARY_SHA256 = "3baf233e03125f5c1a096d375ac1fc20940c9a0e32de42474974bd19adc5c460"
+EXPECTED_TRAJECTORY_SHA256 = "32188555b5226f2770c07dd474e1cdb6eca1e6ad8d0f4135b7ee11f09c2c399a"
+EXPECTED_INDIVIDUAL_SHA256 = "473d5cb5b69f2ef8a086d7a527f0ae48efd90ade77eddbca026e8d668a2a5e55"
+EXPECTED_BIRTH_EVENT_SHA256 = "5aee904e88710db2a3886f2bebe3990fc814f623793d86ff1bf53674b405c394"
+EXPECTED_ATTEMPT_SHA256 = "97391de4515bb71092c47e54ee17a3fdf5cb70dfbe986c9c0e47d012ac29087a"
 EXPECTED_FIGURE_SHA256_BY_NAME = {
-    "lineage_nulls.png": "79f210dca50cf54be25066522fb08da25441a8be3e8ed92772346cac9e9d6976",
-    "population_outcomes.png": "c5c97f776b98b4b6854fb66148c83833138fdb89cb900d1337024946f3a16d9a",
-    "resource_relevance.png": "d742c0e482171948f924af2f0f2a9610914c73e1dabf9b90c8118c8f358a9590",
+    "lineage_nulls.png": "b63a9647325a7dddbd1897af2911bce9e0b62c8983027ddc7b5ace1ae5148528",
+    "population_outcomes.png": "29b92c61a254a44055313e36a4516d84465c96ebd27dc999116e12422db83c3f",
+    "resource_relevance.png": "6956faa873860efd048e9a9a4bc659122d414fd7ee912124f5e8fd71f9b02173",
 }
 EXPECTED_CANONICAL_FIGURE_SHA256 = {
     f"{directory}/{name}": digest
@@ -87,23 +90,39 @@ def _csv_read_handle(path: Path) -> Iterator[TextIO]:
     if path.suffix == ".gz":
         with gzip.open(path, "rt", newline="") as handle:
             yield handle
+    elif path.suffix == ".xz":
+        with lzma.open(path, "rt", newline="") as handle:
+            yield handle
     else:
         with path.open(newline="") as handle:
             yield handle
 
 
 def _csv_content_sha256(path: Path) -> str:
-    if path.suffix != ".gz":
-        return _sha256(path)
     digest = hashlib.sha256()
-    with gzip.open(path, "rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
+    if path.suffix == ".gz":
+        with gzip.open(path, "rb") as handle:
+            for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+                digest.update(chunk)
+        return digest.hexdigest()
+    if path.suffix == ".xz":
+        with lzma.open(path, "rb") as handle:
+            for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+                digest.update(chunk)
+        return digest.hexdigest()
+    return _sha256(path)
 
 
 def _default_attempts_path(artifact_root: Path) -> Path:
     return artifact_root / "results" / ATTEMPTS_FILENAME
+
+
+def _default_individuals_path(artifact_root: Path) -> Path:
+    return artifact_root / "results" / INDIVIDUALS_FILENAME
+
+
+def _default_birth_events_path(artifact_root: Path) -> Path:
+    return artifact_root / "results" / BIRTH_EVENTS_FILENAME
 
 
 def _artifact_root_for_summary(summary_path: Path) -> Path:
@@ -292,15 +311,15 @@ def _verify_hashes(
             "population trajectory CSV hash mismatch: "
             f"expected {EXPECTED_TRAJECTORY_SHA256}, computed {_sha256(trajectory_path)}"
         )
-    if EXPECTED_INDIVIDUAL_SHA256 and _sha256(individuals_path) != EXPECTED_INDIVIDUAL_SHA256:
+    if EXPECTED_INDIVIDUAL_SHA256 and _csv_content_sha256(individuals_path) != EXPECTED_INDIVIDUAL_SHA256:
         raise AssertionError(
             "population individual CSV hash mismatch: "
-            f"expected {EXPECTED_INDIVIDUAL_SHA256}, computed {_sha256(individuals_path)}"
+            f"expected {EXPECTED_INDIVIDUAL_SHA256}, computed {_csv_content_sha256(individuals_path)}"
         )
-    if EXPECTED_BIRTH_EVENT_SHA256 and _sha256(birth_events_path) != EXPECTED_BIRTH_EVENT_SHA256:
+    if EXPECTED_BIRTH_EVENT_SHA256 and _csv_content_sha256(birth_events_path) != EXPECTED_BIRTH_EVENT_SHA256:
         raise AssertionError(
             "population birth-event CSV hash mismatch: "
-            f"expected {EXPECTED_BIRTH_EVENT_SHA256}, computed {_sha256(birth_events_path)}"
+            f"expected {EXPECTED_BIRTH_EVENT_SHA256}, computed {_csv_content_sha256(birth_events_path)}"
         )
     if EXPECTED_ATTEMPT_SHA256 and _csv_content_sha256(attempts_path) != EXPECTED_ATTEMPT_SHA256:
         raise AssertionError(
@@ -359,9 +378,9 @@ def _verify_metadata(
         raise AssertionError("metadata summary hash mismatch")
     if metadata.get("trajectory_csv_sha256") != _sha256(trajectory_path):
         raise AssertionError("metadata trajectory hash mismatch")
-    if metadata.get("individual_csv_sha256") != _sha256(individuals_path):
+    if metadata.get("individual_csv_sha256") != _csv_content_sha256(individuals_path):
         raise AssertionError("metadata individual hash mismatch")
-    if metadata.get("birth_event_csv_sha256") != _sha256(birth_events_path):
+    if metadata.get("birth_event_csv_sha256") != _csv_content_sha256(birth_events_path):
         raise AssertionError("metadata birth-event hash mismatch")
     if metadata.get("attempt_csv_sha256") != _csv_content_sha256(attempts_path):
         raise AssertionError("metadata attempt hash mismatch")
@@ -599,11 +618,11 @@ def main() -> None:
     )
     parser.add_argument(
         "--individuals-csv",
-        default=str(artifact_root / "results" / "qalbench_population_individuals.csv"),
+        default=str(_default_individuals_path(artifact_root)),
     )
     parser.add_argument(
         "--birth-events-csv",
-        default=str(artifact_root / "results" / "qalbench_population_birth_events.csv"),
+        default=str(_default_birth_events_path(artifact_root)),
     )
     parser.add_argument(
         "--attempts-csv",

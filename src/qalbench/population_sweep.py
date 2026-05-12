@@ -16,6 +16,7 @@ import gzip
 import hashlib
 import io
 import json
+import lzma
 import shlex
 import shutil
 import sys
@@ -43,7 +44,9 @@ from .sweep import (
 PACKAGE_ROOT = Path(__file__).resolve().parent
 SCENARIOS = ("basis_selection", "resource_selection", "neutral")
 MODELS = ("quantum", "dephased", "classical", "no_inheritance")
-ATTEMPTS_FILENAME = "qalbench_population_attempts.csv.gz"
+INDIVIDUALS_FILENAME = "qalbench_population_individuals.csv.xz"
+BIRTH_EVENTS_FILENAME = "qalbench_population_birth_events.csv.xz"
+ATTEMPTS_FILENAME = "qalbench_population_attempts.csv.xz"
 
 SUMMARY_FIELDS = [
     "scenario",
@@ -266,19 +269,27 @@ def _csv_write_handle(output_path: Path) -> Iterator[TextIO]:
             ) as gzip_handle:
                 with io.TextIOWrapper(gzip_handle, newline="") as text_handle:
                     yield text_handle
+    elif output_path.suffix == ".xz":
+        with lzma.open(output_path, "wt", newline="") as text_handle:
+            yield text_handle
     else:
         with output_path.open("w", newline="") as handle:
             yield handle
 
 
 def _csv_content_sha256(path: Path) -> str:
-    if path.suffix != ".gz":
-        return _sha256(path)
     digest = hashlib.sha256()
-    with gzip.open(path, "rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
+    if path.suffix == ".gz":
+        with gzip.open(path, "rb") as handle:
+            for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+                digest.update(chunk)
+        return digest.hexdigest()
+    if path.suffix == ".xz":
+        with lzma.open(path, "rb") as handle:
+            for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+                digest.update(chunk)
+        return digest.hexdigest()
+    return _sha256(path)
 
 
 def _sync_population_package_artifacts(
@@ -354,8 +365,8 @@ def write_metadata(
         "attempt_row_count": len(attempts),
         "summary_csv_sha256": _sha256(summary_path),
         "trajectory_csv_sha256": _sha256(trajectory_path),
-        "individual_csv_sha256": _sha256(individuals_path),
-        "birth_event_csv_sha256": _sha256(birth_events_path),
+        "individual_csv_sha256": _csv_content_sha256(individuals_path),
+        "birth_event_csv_sha256": _csv_content_sha256(birth_events_path),
         "attempt_csv_sha256": _csv_content_sha256(attempts_path),
         "figures_sha256": figure_hashes,
         "paper_figures_synced": paper_figures_synced,
@@ -614,7 +625,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output-dir", default=str(ROOT / "results"))
     parser.add_argument("--first-seed", type=int, default=11)
-    parser.add_argument("--seed-count", type=positive_int_arg, default=10)
+    parser.add_argument("--seed-count", type=positive_int_arg, default=100)
     parser.add_argument("--steps", type=positive_int_arg, default=64)
     parser.add_argument("--initial-population", type=population_size_arg, default=24)
     parser.add_argument("--carrying-capacity", type=population_size_arg, default=80)
@@ -660,8 +671,8 @@ def main() -> None:
     summaries, trajectories, individuals, birth_events, attempts = run_population_sweep(args)
     summary_path = output_dir / "qalbench_population.csv"
     trajectory_path = output_dir / "qalbench_population_timeseries.csv"
-    individuals_path = output_dir / "qalbench_population_individuals.csv"
-    birth_events_path = output_dir / "qalbench_population_birth_events.csv"
+    individuals_path = output_dir / INDIVIDUALS_FILENAME
+    birth_events_path = output_dir / BIRTH_EVENTS_FILENAME
     attempts_path = output_dir / ATTEMPTS_FILENAME
     write_csv(summaries, summary_path, SUMMARY_FIELDS)
     write_csv(trajectories, trajectory_path, TRAJECTORY_FIELDS)
