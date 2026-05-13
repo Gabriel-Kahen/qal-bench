@@ -7,11 +7,14 @@ on:
   pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   ci:
     name: ci
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 15
 
     steps:
       - name: Check out repository
@@ -29,5 +32,22 @@ jobs:
           python -m pip install -r requirements.txt
           python -m pip install -e .
 
-      - name: Verify checked-in release artifacts
-        run: scripts/verify_release_artifacts.sh
+      - name: Run unit tests
+        run: python -m unittest discover -s tests
+
+      - name: Verify resource-kernel artifact
+        run: python scripts/verify_qalbench_results.py
+
+      - name: Smoke-test population artifact writer
+        run: |
+          python scripts/run_qalbench_population.py \
+            --seed-count 1 \
+            --steps 2 \
+            --initial-population 6 \
+            --carrying-capacity 14 \
+            --lineage-null-permutations 2 \
+            --output-dir /tmp/qalbench-population-smoke \
+            --no-figures
+          test -f /tmp/qalbench-population-smoke/qalbench_population_individuals.csv.xz
+          test -f /tmp/qalbench-population-smoke/qalbench_population_birth_events.csv.xz
+          test -f /tmp/qalbench-population-smoke/qalbench_population_attempts.csv.xz

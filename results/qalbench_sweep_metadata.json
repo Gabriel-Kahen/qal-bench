@@ -56,13 +56,14 @@
     "python_full": "3.12.13 (main, Mar  3 2026, 15:35:03) [Clang 21.1.4 ]"
   },
   "source": {
-    "git_commit": "ffd64279db677d0af1430173b0e72dca3b60895f",
-    "git_describe": "ffd6427-dirty",
+    "git_commit": "5563cec926d4e4a9c05724b175840462f00e5a1c",
+    "git_describe": "5563cec-dirty",
     "git_dirty": true,
     "git_tag": null,
     "package_version": "0.2.0",
     "source_files_sha256": {
-      ".github/workflows/ci.yml": "3e94ebc8d41f4c132f288eb598b4d951c4a9779b29c05f2d4b0ada83060ff001",
+      ".github/workflows/ci.yml": "7f4a8586bc0ffb701bb59c83a424450ebd9af3ee03916dd4722cbe62732ac723",
+      ".github/workflows/release-verify.yml": "99b9dc333b53b15032b830f29d4024d48901edf61440b5c38c1af011bfad8e9b",
       ".gitignore": "b68e29594f631a13b5d4f140be66543445a08738e2688577084f3049a6886168",
       "ARCHIVE_RELEASE.md": "d36888db0a74c27fd6cc584751ba6c6b876a999ad625130c47f9583265c02645",
       "CITATION.cff": "951f67e29285ba4d757436a907df6c362b655930418a51ec3b7f822558b309a7",
@@ -97,6 +98,6 @@
       "tests/test_population_model.py": "d06e004dd14a47057e97abc538b784ec18de4400d3352f03b687f23c44503388",
       "tests/test_population_sweep_contract.py": "ba14bd6786f39042d573be81bfca53975d98622d5aaa9fb11eb44f8442d75b5a"
     },
-    "source_manifest_sha256": "1ec1a0b73e9eee732ca140425bd1e1712c7bf7bb7d8a7a231f609cebca47c834"
+    "source_manifest_sha256": "c842742aaa0e5f3848f6ffce9a8a322993a1a3a54807bf6057e49e194638e12e"
   }
 }
