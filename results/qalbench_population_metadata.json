@@ -1,6 +1,6 @@
 {
   "argv": [
-    "scripts/run_qalbench_population.py",
+    "src/qalbench/population_sweep.py",
     "--sync-package-artifacts"
   ],
   "artifact": "qalbench population benchmark",
@@ -8,7 +8,7 @@
   "attempt_row_count": 4971676,
   "birth_event_csv_sha256": "5aee904e88710db2a3886f2bebe3990fc814f623793d86ff1bf53674b405c394",
   "birth_event_row_count": 859580,
-  "command": "scripts/run_qalbench_population.py --sync-package-artifacts",
+  "command": "src/qalbench/population_sweep.py --sync-package-artifacts",
   "figures_sha256": {
     "paper/figures/lineage_nulls.png": "b63a9647325a7dddbd1897af2911bce9e0b62c8983027ddc7b5ace1ae5148528",
     "paper/figures/population_outcomes.png": "29b92c61a254a44055313e36a4516d84465c96ebd27dc999116e12422db83c3f",
@@ -17,7 +17,7 @@
     "results/figures/population_outcomes.png": "29b92c61a254a44055313e36a4516d84465c96ebd27dc999116e12422db83c3f",
     "results/figures/resource_relevance.png": "6956faa873860efd048e9a9a4bc659122d414fd7ee912124f5e8fd71f9b02173"
   },
-  "generated_utc": "2026-05-12T23:11:58.734635+00:00",
+  "generated_utc": "2026-05-13T20:18:45.809039+00:00",
   "individual_csv_sha256": "473d5cb5b69f2ef8a086d7a527f0ae48efd90ade77eddbca026e8d668a2a5e55",
   "individual_row_count": 888380,
   "package_version": "0.2.0",
@@ -60,23 +60,23 @@
     "python_full": "3.12.13 (main, Mar  3 2026, 15:35:03) [Clang 21.1.4 ]"
   },
   "source": {
-    "git_commit": "5563cec926d4e4a9c05724b175840462f00e5a1c",
-    "git_describe": "5563cec-dirty",
-    "git_dirty": true,
+    "git_commit": "b1ac9052c6c07f8bdb188d7e2fa63d8ab26b7677",
+    "git_describe": "b1ac905",
+    "git_dirty": false,
     "git_tag": null,
     "package_version": "0.2.0",
     "source_files_sha256": {
-      ".github/workflows/ci.yml": "7f4a8586bc0ffb701bb59c83a424450ebd9af3ee03916dd4722cbe62732ac723",
-      ".github/workflows/release-verify.yml": "99b9dc333b53b15032b830f29d4024d48901edf61440b5c38c1af011bfad8e9b",
+      ".github/workflows/ci.yml": "512def5bae92fdd3eda71f45ebdc17726e186401e9e64a76916d6e3faaaecf81",
+      ".github/workflows/release-verify.yml": "32d9cf757aec06db845401e24c8a9371d289cc9ecbc248de90a0e76707249434",
       ".gitignore": "b68e29594f631a13b5d4f140be66543445a08738e2688577084f3049a6886168",
-      "ARCHIVE_RELEASE.md": "d36888db0a74c27fd6cc584751ba6c6b876a999ad625130c47f9583265c02645",
+      "ARCHIVE_RELEASE.md": "36ed78471963bd245fe5866e0201c462c7e83da14e312757628542d96ce887ab",
       "CITATION.cff": "951f67e29285ba4d757436a907df6c362b655930418a51ec3b7f822558b309a7",
       "LICENSE": "67fe503b5c407bca1c340e14fb7ceb6849b1af4d531a783b30d09cb76e65a3aa",
-      "README.md": "34e28de25d5ca2ce6cac27525e55486e706d3ee8e3a3989a6cf8272a0e9c05c7",
+      "README.md": "f2dcd508516ff062d34b68fb080652c9fe7ca6e08c77fcb52161ba54efe2a1a9",
       "paper/main.tex": "3fb9e301ce4806e25d4467300ba681da34491713d01b1922c77fb5a3156e2ec5",
       "paper/references.bib": "2df415192820fed57bc80db2f56703d05a0a008df5510f13e86cb75ac9618742",
-      "pyproject.toml": "21ed6aecea77f53a83128e359221835249ab7d3eddb97cf00f92c47ee4a70b0b",
-      "requirements-lock.txt": "d480cf075cf9597d6c058959a29c70f30f60fa1c11b0be06fdc6ed29558a3df1",
+      "pyproject.toml": "4ff3378b76a211bb8dd603d318e051c9893096390db5c9aeed7a1625d70aebee",
+      "requirements-lock.txt": "cd112a981b12e9faad0c2c518d7fac01b0533ffd799e8b2acc7d9e155cd805c9",
       "requirements.txt": "84f5adebc745706c410125781d91db59b59f4322870a2c53685e0aaefb9b8575",
       "scripts/reproduce_all.sh": "a27ee9056a493dca71f5c9ba978b4ebc575602fe97c5352c1f43cfc2f3690182",
       "scripts/run_qalbench_population.py": "7d1c2b056f5a5a05a9db06ba0e5bc7f263a67e711c2b816cdabe623a882a9d1e",
@@ -91,18 +91,18 @@
       "src/qalbench/gates.py": "d0cbe194d17979f23441619c307ff335377712a6891af7cc0bffcb8bd197abcf",
       "src/qalbench/metrics.py": "cd0246c0655192e8d7fd483d5ffc5f31366a142c1eeadaa904cc0d067eb642d0",
       "src/qalbench/population.py": "6b87d2725dd323668d381a32541a7c3de55171399d5c5758b038da23384d1a44",
-      "src/qalbench/population_sweep.py": "dbd89c1dbcccdfb88a2453aa1b4d5a952f0697b27f98ddb3480a7be292fad4d8",
+      "src/qalbench/population_sweep.py": "80d08a48d7be7335eb0f02421692ad5f69d3b8cea54b39e37c0657cdef2ff5d5",
       "src/qalbench/population_verify.py": "16be378c814075eae3ef037656a6496b3f734f286e80c9fa153f9e41dd2eddc6",
       "src/qalbench/quantum.py": "2986c939e365dd4186e19253ee307817425b8a1f884b1d5b81544149f108d383",
-      "src/qalbench/sweep.py": "8c19f487a0caa7d76c94d6812918c15ea5cfb945ccf1e3e6046e76c5593ca2fa",
+      "src/qalbench/sweep.py": "3b920e9f78c9ff141b1e8cfda0f341541e9019a2e24c028af91437e6d6df7762",
       "src/qalbench/verify.py": "2d9abf4adca5e26ddb17a15f4698b4557d07913097b3fd9345b761c89021cb1a",
-      "tests/test_cli_contract.py": "f53aaf4efdef313c0f4f47494be2548a4f137bc32b3211eb542f640a3ca5f572",
+      "tests/test_cli_contract.py": "7b54a330f5d873e51f4c93defe590097dcd95242b06a231b9a6f0cfa34723c9e",
       "tests/test_metrics.py": "757e14de9511cde3f52165731050cea0cb26b2c1263112e400d40d57e702da7b",
       "tests/test_model_baselines.py": "b6f663bc10d643d2935423343e9820583ca99e6f32f19010ab399804e4598490",
       "tests/test_population_model.py": "d06e004dd14a47057e97abc538b784ec18de4400d3352f03b687f23c44503388",
       "tests/test_population_sweep_contract.py": "ba14bd6786f39042d573be81bfca53975d98622d5aaa9fb11eb44f8442d75b5a"
     },
-    "source_manifest_sha256": "c842742aaa0e5f3848f6ffce9a8a322993a1a3a54807bf6057e49e194638e12e"
+    "source_manifest_sha256": "4db2cebaeb360ff12d8618fced0b91d56b482752d7728bc6d8e4a7dbdc25b7e2"
   },
   "summary_csv_sha256": "3baf233e03125f5c1a096d375ac1fc20940c9a0e32de42474974bd19adc5c460",
   "summary_row_count": 1200,
