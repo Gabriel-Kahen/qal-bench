@@ -263,7 +263,7 @@ def _source_file_manifest() -> dict[str, object]:
 
 
 def _source_metadata() -> dict[str, object]:
-    status = _git_output(["status", "--porcelain"], empty_as_none=False)
+    status = _git_status()
     metadata: dict[str, str | bool | None | object] = {
         "package_version": _package_version(),
         "git_commit": _git_output(["rev-parse", "HEAD"]),
@@ -273,6 +273,24 @@ def _source_metadata() -> dict[str, object]:
     }
     metadata.update(_source_file_manifest())
     return metadata
+
+
+def _git_status() -> str | None:
+    return _git_output(["status", "--porcelain"], empty_as_none=False)
+
+
+def _require_clean_tree_for_package_artifact_sync() -> None:
+    status = _git_status()
+    if status is None:
+        raise SystemExit(
+            "--sync-package-artifacts requires a Git checkout so artifact "
+            "metadata can record release provenance"
+        )
+    if status:
+        raise SystemExit(
+            "--sync-package-artifacts requires a clean Git tree; commit or "
+            "stash source changes before refreshing packaged canonical artifacts"
+        )
 
 
 def write_metadata(
@@ -705,6 +723,8 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
+    if args.sync_package_artifacts:
+        _require_clean_tree_for_package_artifact_sync()
     output_dir = Path(args.output_dir)
     rows = run_sweep(args)
     csv_path = output_dir / "qalbench_sweep.csv"

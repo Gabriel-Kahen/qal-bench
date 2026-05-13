@@ -33,6 +33,7 @@ from .sweep import (
     ROOT,
     _package_version,
     _repo_relative,
+    _require_clean_tree_for_package_artifact_sync,
     _sha256,
     _source_metadata,
     _sync_paper_figures,
@@ -667,6 +668,8 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
+    if args.sync_package_artifacts:
+        _require_clean_tree_for_package_artifact_sync()
     output_dir = Path(args.output_dir)
     summaries, trajectories, individuals, birth_events, attempts = run_population_sweep(args)
     summary_path = output_dir / "qalbench_population.csv"

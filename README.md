@@ -36,7 +36,7 @@ Create an environment and install dependencies. For reproduction of the
 checked-in scientific artifacts, use the pinned dependency file:
 
 ```bash
-python3 -m venv .venv
+python3.12 -m venv .venv
 .venv/bin/python -m pip install -r requirements-lock.txt
 .venv/bin/python -m pip install -e .
 ```
@@ -46,7 +46,9 @@ included CSV and figure artifacts, with SHA-256 hashes for the wheel set used
 on the recorded macOS arm64/Python 3.12 environment. It does not provision
 Python itself. The artifacts were produced with Python 3.12.13,
 NumPy 2.4.4, Matplotlib 3.10.9, and Tectonic 0.16.9. Regenerated scientific
-CSV output should match the canonical CSV hashes. PNG byte hashes are checked
+CSV output should match the canonical CSV hashes. If `python3.12` is not
+available under that name, create the virtual environment with another Python
+3.12 interpreter explicitly. PNG byte hashes are checked
 for the packaged canonical figures under the recorded rendering stack; exact
 PNG byte reproducibility is platform-sensitive because Matplotlib backend,
 FreeType, and font selection affect rendered files. On a different renderer,
@@ -58,7 +60,7 @@ For a portable development environment, use the broader major-version bounds
 instead:
 
 ```bash
-python3 -m venv .venv
+python3.12 -m venv .venv
 .venv/bin/python -m pip install -r requirements.txt
 .venv/bin/python -m pip install -e .
 ```
@@ -148,9 +150,11 @@ installed wheel falls back to packaged canonical artifacts for the verifier
 commands.
 
 The default sweeps do not modify packaged canonical artifacts. Maintainers
-refresh the wheel fallback copy only with `qalbench-sweep --sync-package-artifacts`
-or `qalbench-population-sweep --sync-package-artifacts` after intentionally
-accepting a new canonical run.
+refresh the wheel fallback copy only from a clean Git tree with
+`qalbench-sweep --sync-package-artifacts` or
+`qalbench-population-sweep --sync-package-artifacts` after intentionally
+accepting a new canonical run. This keeps release metadata from recording a
+dirty provenance state.
 
 ## Build Paper
 
@@ -178,6 +182,12 @@ CSV and figures. Normal and editable installs expose `qalbench-sweep`,
 `qalbench-verify`, `qalbench-population-sweep`, and
 `qalbench-population-verify` console commands. The repository `scripts/` files
 are thin wrappers around those package-native entry points.
+
+The wheel intentionally includes the canonical CSV, compressed row-level
+population artifacts, and figure files so installed verifier commands can audit
+the shipped reference data without a separate repository checkout. This makes
+the wheel large; for lightweight source-only inspection, use the repository tag
+or archive deposit instead of a binary wheel.
 
 ## Citation and License
 

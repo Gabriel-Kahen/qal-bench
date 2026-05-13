@@ -80,6 +80,18 @@ class CliContractTests(unittest.TestCase):
         self.assertIsInstance(metadata["source_files_sha256"], dict)
         self.assertIsInstance(metadata["source_manifest_sha256"], str)
 
+    def test_package_artifact_sync_requires_clean_tree(self) -> None:
+        with mock.patch.object(self.sweep, "_git_status", return_value=" M README.md\n"):
+            with self.assertRaises(SystemExit):
+                self.sweep._require_clean_tree_for_package_artifact_sync()
+
+        with mock.patch.object(self.sweep, "_git_status", return_value=None):
+            with self.assertRaises(SystemExit):
+                self.sweep._require_clean_tree_for_package_artifact_sync()
+
+        with mock.patch.object(self.sweep, "_git_status", return_value=""):
+            self.sweep._require_clean_tree_for_package_artifact_sync()
+
     def test_noncanonical_results_directory_is_not_default_artifact_root(self) -> None:
         artifact_root = Path("/tmp/qalbench-isolated-run")
         self.assertFalse(self.verify._is_canonical_artifact_root(artifact_root))
