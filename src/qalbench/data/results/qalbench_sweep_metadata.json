@@ -1,10 +1,10 @@
 {
   "argv": [
-    "src/qalbench/sweep.py",
+    "scripts/run_qalbench_sweeps.py",
     "--sync-package-artifacts"
   ],
   "artifact": "qalbench two-qubit resource-kernel sweep",
-  "command": "src/qalbench/sweep.py --sync-package-artifacts",
+  "command": "scripts/run_qalbench_sweeps.py --sync-package-artifacts",
   "csv_sha256": "3e0a1434e8ad481c399a99dd4ad5e4fe90668a412a5cc2c6ffbaef0b59e0d7e0",
   "figures_sha256": {
     "paper/figures/phase_diagram.png": "74d3c8651e9d431fba24291dc84fb0db1202e7f369831e347fb73d48c87dba95",
@@ -14,7 +14,7 @@
     "results/figures/quantum_diagnostics.png": "afaba9fd918d273f6248bff826dfb4483c4f857ac895344ffdbbac8cfadeee56",
     "results/figures/z_population.png": "7d3b0dc82e1b65e91e8b678338400f2d56a94cf310439b06610ef46140a4bf86"
   },
-  "generated_utc": "2026-05-13T20:05:25.799540+00:00",
+  "generated_utc": "2026-05-15T19:09:06.138905+00:00",
   "paper_figures_synced": true,
   "parameters": {
     "damping_count": 21,
@@ -56,8 +56,8 @@
     "python_full": "3.12.13 (main, Mar  3 2026, 15:35:03) [Clang 21.1.4 ]"
   },
   "source": {
-    "git_commit": "f547fbc8432635e33b7976caf2e636158784f5d7",
-    "git_describe": "f547fbc",
+    "git_commit": "8ff9d2f4df80a4aad65d5b605bf6683de5e9080b",
+    "git_describe": "8ff9d2f",
     "git_dirty": false,
     "git_tag": null,
     "package_version": "0.2.0",
@@ -66,10 +66,10 @@
       ".github/workflows/release-verify.yml": "32d9cf757aec06db845401e24c8a9371d289cc9ecbc248de90a0e76707249434",
       ".gitignore": "b68e29594f631a13b5d4f140be66543445a08738e2688577084f3049a6886168",
       "ARCHIVE_RELEASE.md": "36ed78471963bd245fe5866e0201c462c7e83da14e312757628542d96ce887ab",
-      "CITATION.cff": "951f67e29285ba4d757436a907df6c362b655930418a51ec3b7f822558b309a7",
+      "CITATION.cff": "e1f7e0576c6c94c6d4a999ace21162aa1ab4859f6d77d608f08c6e2d98043b85",
       "LICENSE": "67fe503b5c407bca1c340e14fb7ceb6849b1af4d531a783b30d09cb76e65a3aa",
-      "README.md": "f2dcd508516ff062d34b68fb080652c9fe7ca6e08c77fcb52161ba54efe2a1a9",
-      "paper/main.tex": "3fb9e301ce4806e25d4467300ba681da34491713d01b1922c77fb5a3156e2ec5",
+      "README.md": "0a3d484b173be9524f72dfade24e5aa540f475487efb6e17ea1c2f85c2982272",
+      "paper/main.tex": "12fdb1d3ff8160f05ae528784cad50b3fa50939b829297f35f50acb47c7e9a32",
       "paper/references.bib": "2df415192820fed57bc80db2f56703d05a0a008df5510f13e86cb75ac9618742",
       "pyproject.toml": "4ff3378b76a211bb8dd603d318e051c9893096390db5c9aeed7a1625d70aebee",
       "requirements-lock.txt": "cd112a981b12e9faad0c2c518d7fac01b0533ffd799e8b2acc7d9e155cd805c9",
@@ -98,6 +98,6 @@
       "tests/test_population_model.py": "d06e004dd14a47057e97abc538b784ec18de4400d3352f03b687f23c44503388",
       "tests/test_population_sweep_contract.py": "ba14bd6786f39042d573be81bfca53975d98622d5aaa9fb11eb44f8442d75b5a"
     },
-    "source_manifest_sha256": "4db2cebaeb360ff12d8618fced0b91d56b482752d7728bc6d8e4a7dbdc25b7e2"
+    "source_manifest_sha256": "7ff24bfbaf3aa94c33bd70e832cef25844dac626e46f5ea5c742890be2540bd7"
   }
 }
