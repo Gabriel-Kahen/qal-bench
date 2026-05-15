@@ -376,7 +376,7 @@ QALBench turns QAL reporting into a tiered set of claim-specific audit tasks. In
 
 \section*{Data and Code Availability}
 
-The QALBench implementation used for this draft is maintained in a Git repository intended for public release under the MIT license. At the time of this draft, the public GitHub repository and archival DOI are pending; the release URL and DOI should be inserted here after the repository is made public and the submission package is deposited in a DOI-minting archive.
+The QALBench implementation used for this draft is publicly available under the MIT license at \url{https://github.com/Gabriel-Kahen/qal-bench}. The archival software release used for this manuscript is version \texttt{v0.2.1}, deposited on Zenodo at \url{https://zenodo.org/records/20215831} with version DOI \href{https://doi.org/10.5281/zenodo.20215831}{10.5281/zenodo.20215831}. The Zenodo concept DOI for all versions is \href{https://doi.org/10.5281/zenodo.20215830}{10.5281/zenodo.20215830}.
 
 The canonical resource-kernel artifacts are the sweep CSV, sweep metadata JSON, and associated figures under \path{results/}; paper copies of figures are synced under \path{paper/figures/}. These artifacts support the implemented T1--T2 tasks. The phase-diagram figure is included as an artifact-level diagnostic for the full resource-kernel sweep but is not used as a main-text result. The current T3--T4 population artifacts are:
 \begin{itemize}
@@ -389,7 +389,7 @@ The canonical resource-kernel artifacts are the sweep CSV, sweep metadata JSON, 
 \end{itemize}
 The verifier scripts recompute the numerical rows from the implementation, check schemas, check parameter coverage, validate source-file manifests, and check CSV and figure hashes.
 
-The audit path for existing checked-in artifacts is \texttt{scripts/verify\_release\_artifacts.sh}. The regeneration path is \texttt{scripts/reproduce\_all.sh}, which runs the unit tests, regenerates the resource-kernel and population artifacts, verifies them, and rebuilds the PDF when Tectonic is installed. For journal submission, the manuscript and artifacts should be regenerated from a clean tagged repository state with version-consistent metadata, deposited in a DOI-minting repository such as Zenodo, OSF, or an institutional archive, and synchronized with \texttt{CITATION.cff} before replacing the pending-availability statement above.
+The audit path for existing checked-in artifacts is \texttt{scripts/verify\_release\_artifacts.sh}. The regeneration path is \texttt{scripts/reproduce\_all.sh}, which runs the unit tests, regenerates the resource-kernel and population artifacts, verifies them, and rebuilds the PDF when Tectonic is installed. The tagged release was verified with version-consistent metadata before archival deposit.
 
 \section*{Author Contributions}
 

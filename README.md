@@ -193,11 +193,11 @@ or archive deposit instead of a binary wheel.
 
 The repository includes `CITATION.cff` and is distributed under the MIT license.
 The source repository is
-[Gabriel-Kahen/qal-bench](https://github.com/Gabriel-Kahen/qal-bench). It
-should be made public, tagged, and archived before journal submission.
+[Gabriel-Kahen/qal-bench](https://github.com/Gabriel-Kahen/qal-bench). The
+archival software release is
+[v0.2.1 on Zenodo](https://zenodo.org/records/20215831), with version DOI
+[10.5281/zenodo.20215831](https://doi.org/10.5281/zenodo.20215831). The concept
+DOI for all versions is
+[10.5281/zenodo.20215830](https://doi.org/10.5281/zenodo.20215830).
 `CITATION.cff` separates the software release citation from the manuscript
-`preferred-citation`. A DOI should be added to the citation metadata after the
-submission package is deposited in a DOI-minting archive such as Zenodo, OSF, or
-an institutional repository. Until that deposit exists, the repository is not a
-final citable release. See `ARCHIVE_RELEASE.md` for the fields that must be
-filled after deposit.
+`preferred-citation`.

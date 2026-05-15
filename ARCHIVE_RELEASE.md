@@ -1,14 +1,12 @@
 # Archive Release Checklist
 
-This local package is prepared for archival release, but it is not submission-complete
-until the following externally assigned fields exist.
-
 - Public repository URL: https://github.com/Gabriel-Kahen/qal-bench
-- Release commit:
-- Release tag:
-- Release URL:
-- Archive DOI:
-- Archive URL:
+- Release commit: 3d42b18d83c971fdfaf6a235815edb8706c2aa7e
+- Release tag: v0.2.1
+- Release URL: https://github.com/Gabriel-Kahen/qal-bench/releases/tag/v0.2.1
+- Archive DOI: 10.5281/zenodo.20215831
+- Concept DOI: 10.5281/zenodo.20215830
+- Archive URL: https://zenodo.org/records/20215831
 
 Before tagging:
 
@@ -20,11 +18,8 @@ Before tagging:
 - Run `scripts/verify_release_artifacts.sh` without degraded-verification flags.
 - Tag the verified release commit.
 
-After deposit, update:
+After deposit, updated:
 
 - `paper/main.tex` Data and Code Availability
 - `README.md` Citation and License
 - `CITATION.cff` with DOI metadata
-
-Do not invent these values in the manuscript or citation metadata before the
-public archive exists.
