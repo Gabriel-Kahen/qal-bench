@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this repository, please cite both the software artifact and the manuscript listed in preferred-citation."
-title: "QALBench: Audit Protocol and Reference Implementation for Quantum Artificial-Life Claims"
+title: "QALBench: Tiered Audit Benchmark and Reference Implementation for Quantum Artificial-Life Claims"
 type: software
 authors:
   - family-names: Kahen
@@ -23,7 +23,7 @@ keywords:
   - benchmark
 preferred-citation:
   type: generic
-  title: "QALBench: An Audit Protocol and Reference Implementation for Quantum Artificial-Life Claims"
+  title: "QALBench: A Tiered Audit Benchmark and Reference Implementation for Quantum Artificial-Life Claims"
   authors:
     - family-names: Kahen
       given-names: Gabriel

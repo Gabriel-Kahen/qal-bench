@@ -2,7 +2,7 @@
 
 This repository contains the manuscript and benchmark code for:
 
-**QALBench: An Audit Protocol and Reference Implementation for Quantum Artificial-Life Claims**
+**QALBench: A Tiered Audit Benchmark and Reference Implementation for Quantum Artificial-Life Claims**
 
 QALBench separates three kinds of quantum artificial-life claims:
 

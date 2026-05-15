@@ -13,7 +13,7 @@
 
 \emergencystretch=2em
 
-\title{\textbf{QALBench: An Audit Protocol and Reference Implementation for Quantum Artificial-Life Claims}\\
+\title{\textbf{QALBench: A Tiered Audit Benchmark and Reference Implementation for Quantum Artificial-Life Claims}\\
 \large Population Lineages, Classical Controls, and Quantum-Resource Ablations}
 \author{Gabriel Kahen\thanks{Corresponding author: \href{mailto:gabekahen@gmail.com}{gabekahen@gmail.com}.}\\Independent Researcher\\United States}
 \date{May 2026}
@@ -31,9 +31,9 @@
 \maketitle
 
 \begin{abstract}
-Quantum artificial-life (QAL) papers often combine artificial-life labels, such as inheritance, mutation, interaction, turnover, and selection, with quantum-resource labels, such as coherence, entanglement, Bell nonlocality, and channel resources. These labels require different records and different controls. This paper introduces QALBench as an audit protocol with a reference implementation, not as a leaderboard or a detector of new QAL phenomena. The protocol separates artificial-life adequacy, quantum-resource evidence, and computational nonclassicality.
+Quantum artificial-life (QAL) papers often combine artificial-life labels, such as inheritance, mutation, interaction, turnover, and selection, with quantum-resource labels, such as coherence, entanglement, Bell nonlocality, and channel resources. These labels require different records and different controls. This paper introduces QALBench as a tiered audit benchmark with a reference implementation, not as a leaderboard or a detector of new QAL phenomena. The protocol separates artificial-life adequacy, quantum-resource evidence, and computational nonclassicality.
 
-The reference implementation has two modules. A cloned-observable resource kernel compares an exact two-qubit density-matrix simulation, a stepwise dephased simulation, and a matched classical Markov chain. For this implemented event family and measurement basis, computational-basis inheritance probabilities are fixed by a diagonal transition map, while off-diagonal coherence, negativity, concurrence, and the Horodecki value for possible CHSH violation identify state resources removed by the dephased and Markov controls. A population module adds lineage-audited records for identities, parent--offspring events, inherited continuous genotype parameters, expressed computational-basis phenotypes, births, deaths, mutations, interaction exposure, imposed selection rules, no-inheritance controls, and shuffled-lineage diagnostics.
+The benchmark defines a task ladder that ranges from basis-inheritance checks through resource diagnostics, population lineage audits, resource-coupled outcome controls, finite-shot certification targets, and computational-nonclassicality submissions. The reference implementation covers the first four tiers. A cloned-observable resource kernel compares an exact two-qubit density-matrix simulation, a stepwise dephased simulation, and a matched classical Markov chain. For this implemented event family and measurement basis, computational-basis inheritance probabilities are fixed by a diagonal transition map, while off-diagonal coherence, negativity, concurrence, and the Horodecki value for possible CHSH violation identify state resources removed by the dephased and Markov controls. A population module adds lineage-audited records for identities, parent--offspring events, inherited continuous genotype parameters, expressed computational-basis phenotypes, births, deaths, mutations, interaction exposure, imposed selection rules, no-inheritance controls, and shuffled-lineage diagnostics.
 
 The population experiments are reporting and control checks, not a new quantum artificial-life phenomenon. Under matched seeds, basis-selection demographic, phenotype, and lineage summaries are identical for the quantum, dephased, and classical controls, excluding resource diagnostics. A software positive-control assay intentionally inserts a stored negativity-derived birth-event score into the reproduction rule and shows how such synthetic scalar feedback is removed by dephasing or Markov controls. A no-inheritance resource control remains resource-positive but transmission-negative, showing that resource-coupled reproduction is not the same as inherited resource-mediated artificial life. QALBench does not claim quantum advantage, finite-shot hardware certification, open-ended evolution, or persistent population-level entanglement.
 \end{abstract}
@@ -46,17 +46,21 @@ Those are different claims. A population model with excellent inheritance, mutat
 
 The Alvarez-Rodriguez--Sanz--Lamata--Solano program makes the issue concrete. The 2014 biomimetic-cloning protocol copies a selected observable without cloning an arbitrary unknown state \citep{alvarez2014biomimetic}. The 2016 QAL model represents each individual with genotype and phenotype qubits and adds self-replication, mutation, interaction, and Lindblad aging/death \citep{alvarez2016artificial,lindblad1976generators}. The 2018 IBM implementation reports small QAL subprotocols on superconducting hardware and explicitly distinguishes computational-basis inheritance from cross-generational quantum correlations \citep{alvarez2018ibm}. Later theoretical work explores thermodynamic self-replication mechanisms in light--matter systems \citep{valente2021self,lamata2020perspective}. Adjacent quantum cellular-automaton and quantum Game-of-Life work studies quantum many-body or circuit analogues of cellular rules rather than lineage-audited QAL claims \citep{bleh2012quantum,ney2022entanglement,escanez2026qgol}. These papers are valuable, but they also show why a benchmark must ask claim-specific questions: what was inherited, what varied, what turned over, what was selected, what was measured in noncommuting settings, and what classical control failed?
 
-QALBench is designed around that separation. It contains a reporting schema, two implemented reference modules, and reproducible summary artifacts. The first implemented module is the cloned-observable resource kernel: it tests when basis-probability inheritance data are reproduced by dephased and Markov controls and where noncommuting quantum diagnostics remain. The second implemented module is a population audit module: it computes individual, parent--child, inherited genotype-parameter, expressed-phenotype, birth, death, mutation, interaction-exposure, selection-rule, and resource-ablation records, then reports summary and time-series artifacts. The reference implementation is intentionally conservative. It does not equate artificial-life adequacy with quantum resources, and it does not equate quantum resources with computational advantage.
+QALBench is designed around that separation. It contains a tiered task suite, a reporting schema, two implemented reference modules, and reproducible summary artifacts. The tiers make partial results reportable without implying stronger claims: a study can pass a basis-inheritance task without passing a resource-dependence task, or pass a resource-diagnostic task without earning a population-level artificial-life claim. The first implemented module is the cloned-observable resource kernel: it tests when basis-probability inheritance data are reproduced by dephased and Markov controls and where noncommuting quantum diagnostics remain. The second implemented module is a population audit module: it computes individual, parent--child, inherited genotype-parameter, expressed-phenotype, birth, death, mutation, interaction-exposure, selection-rule, and resource-ablation records, then reports summary and time-series artifacts. The reference implementation is intentionally conservative. It does not equate artificial-life adequacy with quantum resources, and it does not equate quantum resources with computational advantage.
 
 \subsection{Related Work and Gap}
 
 QALBench draws from four literatures whose standards are often mixed together in QAL discussions. First, artificial-life systems such as self-reproducing automata, Tierra, Avida, and digital-evolution models establish that inheritance, mutation, turnover, selection, diversity, and open-endedness are population claims requiring explicit records, not labels inferred from the presence of update rules \citep{vonneumann1966self,ray1992tierra,ofria2004avida,lenski2003evolutionary,bedau2003artificial,bullock2006exploring,banzhaf2016defining,packard2019overview,dolson2019modes}. Second, the QAL and quantum-biomimetics literature provides cloned-observable inheritance, genotype--phenotype circuits, quantum-correlation diagnostics, hardware demonstrations, and thermodynamic replication mechanisms \citep{alvarez2014biomimetic,alvarez2016artificial,alvarez2018ibm,lamata2020perspective,valente2021self}. Third, quantum cellular-automaton and quantum Game-of-Life studies explore many-body or grid-rule analogues that are adjacent to, but not identical with, lineage-audited artificial-life claims \citep{bleh2012quantum,ney2022entanglement,escanez2026qgol}. Fourth, quantum-information, coherence-resource, certification, and quantum-benchmarking work supplies the resource diagnostics, Bell-test assumptions, tomography cautions, and classical-simulation baselines needed before resource or computational-nonclassicality language is justified \citep{bell1964einstein,clauser1969proposed,baumgratz2014coherence,horodecki1995violating,guhne2009entanglement,brunner2014bell,li2020qasmbench,tomesh2022supermarq,gottesman1998heisenberg,aaronson2004improved,vidal2003efficient,bravyi2005universal,veitch2012negative,howard2014contextuality,pashayan2015estimating,bravyi2016improved,huang2020classical}.
 
-The gap is not a lack of any one component. The gap is an audit workflow that keeps the components aligned with the claim being made. QALBench therefore does not introduce the cloned-observable QAL protocol, standard entanglement diagnostics, or artificial-life diversity metrics. Its contribution is a concrete claim-audit package: a reporting schema, resource-destroying controls for a cloned-observable kernel, lineage and no-inheritance population records, capacity-censored reproduction-opportunity records, synthetic positive controls for resource-coupled outcomes, and verification scripts that bind the manuscript claims to reproducible artifacts. Resource-coupled outcomes are treated as positive controls unless the resource enters through an independently specified physical mechanism. This is narrower than a general benchmark for quantum many-body cellular automata, artificial chemistry, open-ended evolution, quantum biology, or quantum computational advantage, and it is meant to complement rather than replace those domains. The coverage table below is therefore illustrative rather than a survey of all adjacent fields.
+The gap is not a lack of any one component. The gap is an audit workflow that keeps the components aligned with the claim being made. QALBench therefore does not introduce the cloned-observable QAL protocol, standard entanglement diagnostics, or artificial-life diversity metrics. Its contribution is a concrete claim-audit package: a tiered benchmark task suite, a reporting schema, resource-destroying controls for a cloned-observable kernel, lineage and no-inheritance population records, capacity-censored reproduction-opportunity records, synthetic positive controls for resource-coupled outcomes, and verification scripts that bind the manuscript claims to reproducible artifacts. Resource-coupled outcomes are treated as positive controls unless the resource enters through an independently specified physical mechanism. This is narrower than a general benchmark for quantum many-body cellular automata, artificial chemistry, open-ended evolution, quantum biology, or quantum computational advantage, and it is meant to complement rather than replace those domains. The prior-work audit examples are therefore illustrative rather than a survey of all adjacent fields.
 
-\section{Benchmark Claims}
+\section{QALBench Task Suite}
 
-QALBench is an audit and reporting protocol, not a universal pass/fail benchmark with fixed numerical thresholds. It evaluates three evidence axes that are not automatically nested: a system can show artificial-life bookkeeping without quantum resources, or quantum resources without meaningful artificial-life dynamics. A strong QAL claim should say which axis is being asserted, which observable or outcome is at issue, and which controls that outcome survives.
+The core benchmark unit in QALBench is a claim-tied task, not a single score. A submission states the artificial-life claim, the quantum-resource claim, the observable or task output, the control family, and the unit of replication before reporting results. The tier then identifies what kind of evidence has actually been audited. This makes partial results comparable without allowing lower-tier evidence to stand in for stronger claims.
+
+\subsection{Evidence Axes}
+
+QALBench evaluates three evidence axes that are not automatically nested: a system can show artificial-life bookkeeping without quantum resources, or quantum resources without meaningful artificial-life dynamics. A strong QAL claim should say which axis is being asserted, which observable or outcome is at issue, and which controls that outcome survives.
 
 \textbf{Artificial-life adequacy.} A system implements the life-like dynamics it names: individual identity, parent--offspring dependence, heritable variation, turnover, interaction, selection rules, diversity, or open-endedness. Quantum hardware or notation is not enough; the corresponding artificial-life records must be present.
 
@@ -88,15 +92,39 @@ What does it not support by itself? & Computational nonclassicality or quantum-r
 \label{fig:layers}
 \end{figure}
 
-\subsection{How to Use QALBench}
+\subsection{Tiered Benchmark Tasks}
 
-A QALBench submission should make an explicit claim statement before reporting results. The statement should identify the artificial-life labels being claimed, the quantum resource being claimed, the observable or task output, the control family, and the unit of replication. At minimum, an artificial-life submission should provide individual or register identities, parent IDs where reproduction is claimed, birth/reset/death times, inherited and expressed states, mutation records, interaction records when interactions are claimed, and outcome summaries. A quantum-resource submission should provide the resource diagnostic, its assumptions, and a resource-destroying or resource-preserving control matched to the claim. A computational-nonclassicality submission should additionally specify scaling, error tolerance, finite-shot budget, and classical simulator families.
+QALBench organizes submissions into task tiers, summarized in Table~\ref{tab:tiers}. The tiers are a reporting ladder rather than a cumulative pass/fail score. A paper may report only the tiers relevant to its claim, and a lower-tier result should not be described as satisfying a stronger tier. For example, a basis-inheritance demonstration can satisfy the cloned-observable task without satisfying a quantum-resource-dependence task, and an exact state diagnostic can satisfy a resource task without satisfying a finite-shot hardware-certification task.
 
-The reference implementation is one example of the protocol, not the only acceptable one. Its current artifacts persist the resource-kernel sweep, population summary and time-series CSVs, individual-level population records in \path{results/qalbench_population_individuals.csv.xz}, reproduction-opportunity records in \path{results/qalbench_population_attempts.csv.xz}, and admitted birth-event records in \path{results/qalbench_population_birth_events.csv.xz}. This allows the reported summaries to be reproduced from the implementation and the underlying lineage and opportunity records to be audited directly.
+\begin{table}[!htbp]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.16}
+\begin{tabular}{P{0.08\linewidth}P{0.20\linewidth}P{0.25\linewidth}P{0.23\linewidth}P{0.16\linewidth}}
+\toprule
+\textbf{Tier} & \textbf{Benchmark task} & \textbf{Minimum supported claim} & \textbf{Required output} & \textbf{Controls or status} \\
+\midrule
+T1 & Basis-inheritance kernel & A named computational-basis observable is transmitted or copied for the stated event family. & Basis probabilities, $Z$ expectations, copy agreement, event parameters, and implementation manifest. & Dephased and diagonal Markov controls matched to event ordering and readout. Implemented here. \\
+\addlinespace
+T2 & Quantum-resource diagnostic & A specified state, process, or measurement resource is present under stated assumptions. & Coherence, entanglement, Bell, contextuality, magic, or channel metric with basis and diagnostic assumptions. & Resource-destroying or resource-preserving controls matched to the diagnostic. Implemented here for exact two-qubit states. \\
+\addlinespace
+T3 & Population lineage audit & Claimed artificial-life bookkeeping is present for explicit individuals or registers. & Individual IDs, parent IDs, birth/death/reset times, inherited and expressed states, mutation records, lineage depth, diversity, and outcome summaries. & No-inheritance and shuffled-lineage nulls; neutral controls when selection is claimed. Implemented here. \\
+\addlinespace
+T4 & Resource-coupled outcome control & A resource-derived event variable can change a stated population outcome and the change is removed by controls. & Event-level resource records, reproduction or survival opportunities, capacity-blocked opportunities, and effect-size summaries. & Dephased or Markov ablation plus transmission-breaking null. Implemented here only as a synthetic positive control. \\
+\addlinespace
+T5 & Finite-shot or hardware certification & The claimed resource or inheritance statistic survives finite sampling and hardware-specific uncertainty. & Counts, confidence intervals, witness estimates, readout/SPAM treatment, calibration assumptions, and shot budget. & Finite-shot dephased/classical controls, witness/tomography confidence regions, or Bell-test protocol. Future module. \\
+\addlinespace
+T6 & Computationally nonclassical QAL task & A scalable artificial-life task challenges specified efficient classical simulation families. & Scaling variable, sampling or decision output, allowed error, finite-shot budget, and reference implementation. & Stabilizer, low-magic, tensor-network, classical-shadow, and task-specific simulators. Future module. \\
+\bottomrule
+\end{tabular}
+\caption{Tiered QALBench task suite. The present artifact implements T1--T4 for a cloned-observable event family and a population reporting benchmark. T5 and T6 are submission targets: they specify what must be reported before finite-shot hardware certification or computational nonclassicality should be claimed.}
+\label{tab:tiers}
+\end{table}
 
-\section{Benchmark Schema}
+\section{Reporting Schema and Scorecard}
 
-Table~\ref{tab:schema} gives the reporting schema used by the reference implementation. It is not a universal pass/fail standard. Instead, it lists the records and controls that make each label auditable. A study should report only the rows corresponding to the claims it makes, and should treat omitted controls as limits on the supported claim rather than as failed hidden tests.
+Table~\ref{tab:schema} is the record-level scorecard underneath the task tiers. It is not a universal pass/fail standard. Instead, it lists the records and controls that make each label auditable. A study should report only the rows corresponding to the claims it makes, and should treat omitted controls as limits on the supported claim rather than as failed hidden tests.
 
 \begin{table}[t]
 \centering
@@ -121,9 +149,19 @@ Computational nonclassicality & Scalable task, sampling or decision output, erro
 \label{tab:schema}
 \end{table}
 
-\section{Reference Modules}
+\subsection{Submission Workflow}
 
-\subsection{Cloned-Observable Resource Kernel}
+A QALBench submission should make an explicit claim statement before reporting results. The statement should identify the artificial-life labels being claimed, the quantum resource being claimed, the observable or task output, the control family, the task tier, and the unit of replication. At minimum, an artificial-life submission should provide individual or register identities, parent IDs where reproduction is claimed, birth/reset/death times, inherited and expressed states, mutation records, interaction records when interactions are claimed, and outcome summaries. A quantum-resource submission should provide the resource diagnostic, its assumptions, and a resource-destroying or resource-preserving control matched to the claim. A computational-nonclassicality submission should additionally specify scaling, error tolerance, finite-shot budget, and classical simulator families.
+
+The reference implementation is one example of the protocol, not the only acceptable one. Its current artifacts persist the resource-kernel sweep, population summary and time-series CSVs, individual-level population records in \path{results/qalbench_population_individuals.csv.xz}, reproduction-opportunity records in \path{results/qalbench_population_attempts.csv.xz}, and admitted birth-event records in \path{results/qalbench_population_birth_events.csv.xz}. This allows the reported summaries to be reproduced from the implementation and the underlying lineage and opportunity records to be audited directly.
+
+\FloatBarrier
+
+\section{Reference Implementation}
+
+The reference implementation instantiates the task suite rather than exhausting it. The cloned-observable resource kernel implements T1 and T2 for a two-qubit event family with exact state diagnostics and matched dephased and Markov controls. The population benchmark implements T3 and a synthetic T4 positive control by attaching event-level resource diagnostics to explicit lineage, opportunity, and turnover records. T5 finite-shot certification and T6 computational-nonclassicality tasks are specified as submission targets, not implemented claims of the current artifact.
+
+\subsection{T1--T2: Cloned-Observable Resource Kernel}
 
 The resource-kernel module uses two registers: a precursor inherited register and a descendant register. The precursor is prepared as
 \begin{equation}
@@ -155,7 +193,7 @@ S_{\max}=2\sqrt{m_1+m_2},
 \end{equation}
 where $m_1,m_2$ are the two largest eigenvalues of $T^\mathsf{T}T$ for the Pauli correlation matrix \citep{horodecki1995violating}. This value is the optimal CHSH expectation available from the exact two-qubit state under ideal measurements; it is not itself a loophole-free, finite-shot, or device-independent Bell test. Hardware certification would require finite-shot uncertainty, SPAM/readout treatment, calibrated witnesses, tomography confidence regions, or direct Bell-test protocols with their assumptions \citep{guhne2009entanglement,christandl2012reliable,brunner2014bell,zhang2011asymptotically,elkouss2016nearly}.
 
-\subsection{Population Benchmark}
+\subsection{T3--T4: Population Benchmark}
 
 The population module adds the artificial-life records missing from a two-qubit kernel. Each individual $i$ has an identity, parent identity, birth step, death step, lineage generation, inherited genotype parameter $\theta_i\in[0,\pi]$, expressed computational-basis phenotype bit $b_i$, and event-level resource diagnostics from its birth. Initial $\theta_i$ values are sampled as $\pi X_i$ with $X_i\sim\mathrm{Beta}(2,2)$ using the replicate seed. At a reproduction event, the parent produces a descendant by the cloned-observable kernel. The descendant expressed bit is sampled from the descendant $Z$ probability of the selected model:
 \begin{equation}
@@ -189,9 +227,9 @@ where the CSV scenario name for the second row is \texttt{resource\_selection}. 
 
 Four model controls are run for each scenario. The quantum model uses the coherent event state. The dephased model uses the stepwise dephased event state. The classical model uses the matched Markov event distribution embedded as a diagonal density matrix. The no-inheritance model keeps the quantum event resource calculation but breaks parent-to-child transmission of $\theta$ by drawing an independent event angle and transmitting that same independent value to the child. This makes the no-inheritance control a transmission-breaking null, not a trajectory-matched intervention that leaves every other stochastic dependency unchanged. The summary artifact also reports a shuffled-lineage mutual-information diagnostic, computed from 200 seeded permutations of parent bits before recomputing parent--offspring mutual information. This simple shuffle ignores temporal structure, repeated parents, bottlenecks, and descendant dependence, so it is a heuristic lineage diagnostic rather than a full lineage-aware permutation test. The artifact records the null mean, 95th percentile, and empirical permutation $p$ value for each replicate.
 
-\section{Results}
+\section{Benchmark Results}
 
-\subsection{Basis-Observable Inheritance Is Markov-Reproducible}
+\subsection{T1: Basis-Observable Inheritance Is Markov-Reproducible}
 
 Figure~\ref{fig:zpop} shows the descendant $Z$-basis probability under increasing amplitude damping for the $\theta=\pi/2$, $\mu=0$ slice. The full quantum, dephased quantum, and classical Markov curves coincide to numerical precision. Across the default resource-kernel sweep, the maximum absolute difference in any computational-basis probability between the full quantum or dephased model and the Markov model is $3.3\times10^{-16}$, and the aggregate maximum over the tracked $Z$ and copy-agreement quantities is $4.4\times10^{-16}$. Within this event family, a QAL report that measures only this cloned observable has therefore validated a basis-probability transition, not a uniquely quantum resource.
 
@@ -202,7 +240,7 @@ Figure~\ref{fig:zpop} shows the descendant $Z$-basis probability under increasin
 \label{fig:zpop}
 \end{figure}
 
-\subsection{Noncommuting Diagnostics Identify the Quantum Resource}
+\subsection{T2: Noncommuting Diagnostics Identify the Quantum Resource}
 
 Figure~\ref{fig:witnesses} shows the same kernel under noncommuting diagnostics. At zero damping the coherent model reaches negativity $0.5$, concurrence $1.0$, and Horodecki CHSH maximum $2\sqrt{2}\approx2.828$, while dephased and diagonal Markov embeddings have zero negativity and Horodecki CHSH maximum $2.0$. For the $\mu=0$ Bell-damping slice,
 \begin{equation}
@@ -217,9 +255,9 @@ The Horodecki CHSH diagnostic reaches the local bound at $\gamma=0.5$. This resu
 \label{fig:witnesses}
 \end{figure}
 
-\subsection{Population Records Establish Selected Reporting Coverage}
+\subsection{T3: Population Records Establish Selected Reporting Coverage}
 
-The population benchmark records artificial-life quantities that the two-qubit module cannot. In the basis-selection scenario, the quantum, dephased, and classical controls have identical demographic, phenotype, and lineage summaries under matched seeds because selection depends only on basis phenotypes and the event diagonal maps are identical; the resource diagnostics differ by construction. Each of these three controls averages $712.3\pm27.0$ births, $656.3\pm27.0$ deaths, final population $80.0\pm0.0$, maximum lineage depth $16.6\pm1.7$, parent--offspring mutual information $0.00921\pm0.00814$ bits, shuffled-lineage mutual information $0.00102\pm0.00010$ bits, shuffled-null 95th percentile $0.00381\pm0.00055$ bits, parent--child $\theta$ correlation $0.978\pm0.010$, and capacity-blocked opportunity fraction $0.476\pm0.043$ across the 100 basis-selection seeds. The heuristic lineage-MI permutation diagnostic has median empirical $p=0.0149$ across these seeds, with range $0.0050$ to $1.000$; the range is reported because averaging permutation $p$ values is not a useful inference target. The no-inheritance control has similar turnover but collapses continuous genotype-parameter transmission: parent--child $\theta$ correlation falls to $-0.007\pm0.037$ and parent--offspring mutual information falls to $0.00098\pm0.00107$ bits.
+The population benchmark records artificial-life quantities that the two-qubit module cannot. In the basis-selection scenario, the quantum, dephased, and classical controls have identical demographic, phenotype, and lineage summaries under matched seeds because selection depends only on basis phenotypes and the event diagonal maps are identical; the resource diagnostics differ by construction. Each of these three controls averages $712.3\pm27.0$ births, $656.3\pm27.0$ deaths, final population $79.98\pm0.20$, maximum lineage depth $16.6\pm1.7$, parent--offspring mutual information $0.00921\pm0.00814$ bits, shuffled-lineage mutual information $0.00102\pm0.00010$ bits, shuffled-null 95th percentile $0.00381\pm0.00055$ bits, parent--child $\theta$ correlation $0.978\pm0.010$, and capacity-blocked opportunity fraction $0.476\pm0.043$ across the 100 basis-selection seeds. The heuristic lineage-MI permutation diagnostic has median empirical $p=0.0149$ across these seeds, with range $0.0050$ to $1.000$; the range is reported because averaging permutation $p$ values is not a useful inference target. The no-inheritance control has similar turnover but collapses continuous genotype-parameter transmission: parent--child $\theta$ correlation falls to $-0.007\pm0.037$ and parent--offspring mutual information falls to $0.00098\pm0.00107$ bits.
 
 These values are deliberately not presented as universal thresholds. They show that QALBench can distinguish reproduction bookkeeping from inherited genotype-parameter transmission and can report a shuffled-lineage diagnostic. The strongest inheritance signal here is the copied $\theta$ parameter; parent--offspring bit mutual information is weak and should be treated as a secondary phenotype-association statistic. Because mutation is applied after the birth phenotype is sampled, mutations affect the genotype used in later descendant events rather than the child phenotype at the same birth event. Figure~\ref{fig:lineage} shows the lineage metrics across all scenarios.
 
@@ -230,13 +268,13 @@ These values are deliberately not presented as universal thresholds. They show t
 \label{fig:lineage}
 \end{figure}
 
-\subsection{Resource-Coupled Positive Control}
+\subsection{T4: Resource-Coupled Positive Control}
 
 Figure~\ref{fig:popoutcomes} summarizes final population and lineage depth. In the basis-selection and neutral scenarios, quantum birth-event resources do not change population outcomes because the selection rule does not use them and the basis probabilities match the Markov map. In the resource positive-control scenario, the benchmark explicitly and synthetically couples reproduction probability to a stored birth-event resource score. This is an engineered software positive-control assay, not evidence that a natural or hardware QAL process would use negativity as a fitness variable. The quantum model then averages birth-event resource score $0.719\pm0.037$ and $744.5\pm25.9$ births per replicate, while dephased and classical controls have zero resource score and $711.8\pm24.6$ births. Using the matched seed labels descriptively, the quantum--classical birth-count difference is $32.7\pm31.3$ births, with median $32.0$ and range $-47$ to $143$ births. This is not treated as a formal paired inference because the stochastic trajectories consume random draws differently after their population histories diverge. The final population remains near carrying capacity for all models; in the resource positive-control quantum run, $0.633\pm0.021$ of parent opportunities are capacity blocked. Birth count, capacity-blocked opportunities, and birth-event resource-score trajectories are therefore more informative than endpoint population alone. Figure~\ref{fig:resource} shows the corresponding time-series birth-event resource scores associated with living individuals.
 
 Table~\ref{tab:population-summary} collects the main population summaries with uncertainty.
 
-\subsection{No-Inheritance Resource Control Is a Negative Result}
+\subsection{T3--T4: No-Inheritance Resource Control Is a Negative Result}
 
 The no-inheritance resource control is the key negative result for the population resource assay. It averages resource score $0.635\pm0.008$ and $741.6\pm25.1$ births in the resource positive-control scenario, nearly matching the inherited quantum run in resource-positive reproduction, but its parent--child $\theta$ correlation is only $-0.005\pm0.035$ and its parent--offspring bit mutual information is $0.00105\pm0.00123$ bits. Thus the positive control validates that the inserted resource score can affect reproduction probability; it does not validate inherited resource-mediated artificial life. In the quantum resource positive-control run, parent--child $\theta$ correlation remains high at $0.980\pm0.008$, but parent--offspring bit mutual information is only $0.0149\pm0.0121$ bits and is lower than the dephased/classical value of $0.0385\pm0.0278$ bits. QALBench therefore treats resource-coupled population outcomes, inherited genotype-parameter transmission, and bit-lineage association as separate records. A resource-positive population trace without inherited-state transmission is a failed inheritance claim, even if it is a successful resource-control demonstration.
 
@@ -297,11 +335,11 @@ neutral & no inheritance & $708.7\pm23.3$ & $0.384\pm0.029$ & $0.637\pm0.006$ & 
 
 \FloatBarrier
 
-\section{Related-Work Audit Examples}
+\section{Audit Examples on Prior QAL Work}
 
 Table~\ref{tab:coverage} shows how the audit vocabulary can be applied to three illustrative QAL-associated papers. The table is not an adjudication of paper quality, a priority claim, or a complete field survey; it is limited to papers that use QAL-style inheritance, self-replication, or organism language rather than the broader set of quantum cellular automata, quantum simulation benchmarks, artificial chemistry, or quantum-biology models. It separates what the papers report from additional controls that would be needed for stronger population, resource-certification, or computational-nonclassicality claims. Open-ended-evolution metric work motivates the reporting rows for novelty, diversity, and adaptation \citep{bullock2006exploring,banzhaf2016defining,packard2019overview,dolson2019modes}, while quantum cellular-automaton and quantum Game-of-Life studies motivate future many-body modules \citep{bleh2012quantum,ney2022entanglement,escanez2026qgol}. QALBench does not subsume those areas; it targets claim-specific audits for QAL papers that use inheritance, lineage, selection, and quantum-resource language together.
 
-\begin{table}[t]
+\begin{table}[!htbp]
 \centering
 \scriptsize
 \setlength{\tabcolsep}{3.5pt}
@@ -322,25 +360,25 @@ Table~\ref{tab:coverage} shows how the audit vocabulary can be applied to three 
 
 \FloatBarrier
 
-\section{Discussion}
+\section{Limitations and Future Tiers}
 
 QALBench answers two questions that the original resource-kernel audit did not fully answer. First, it asks whether artificial-life claims survive population records and nulls. The population module computes parent IDs, generations, inherited genotype parameters, expressed bits, births, deaths, inherited-model mutations, sampled interaction exposures, reproduction opportunities, capacity-blocked opportunities, imposed selection-rule outcomes, lineage mutual information, shuffled-lineage diagnostics, and no-inheritance controls. These records establish coverage of selected reporting fields, not open-ended artificial life or adaptation in the stronger sense. Second, it asks whether a claimed quantum-resource dependence can be made removable by an appropriate control. The basis-selection scenario shows that quantum, dephased, and classical variants can have identical non-resource population summaries when the outcome depends only on the cloned computational-basis observable. The resource positive-control scenario shows how to define a software outcome coupled to a stored event-level resource score, remove the score with controls, quantify descriptive uncertainty under matched seed labels, and still require lineage transmission to support artificial-life language.
 
 The benchmark is intentionally modular. A future hardware submission could replace the exact density-matrix event diagnostics with measured witness estimates, finite-shot confidence intervals, readout-error treatment, or a directly measured CHSH protocol. A future population submission could replace the synthetic selection rule with platform-specific survival, replication, or energy-flow mechanisms. The benchmark demand remains the same: state the artificial-life claim, state the quantum-resource claim, run the corresponding nulls, and report which claims survive.
 
-\subsection{Limitations}
+In the tier language of Table~\ref{tab:tiers}, the present resource kernel instantiates T1 and T2, the population records instantiate T3, and the resource-selection scenario instantiates T4 only as a software positive control. This framing is meant to make partial submissions comparable without flattening them into a single score. A hardware experiment with finite-shot witnesses would add T5 evidence even if its population bookkeeping remained small. A scalable simulation challenge would enter T6 only after specifying the task output, error model, and classical simulator families being challenged.
 
 The population module is not a many-body quantum simulation of all individuals. It is a population-level reporting benchmark with event-level quantum-resource diagnostics attached to otherwise classical individuals. No quantum state, entanglement, or coherence is inherited through the population. This is a deliberate engineering choice: exact density matrices over a growing population scale exponentially and would obscure the claim-specific controls. The resource positive-control scenario is also synthetic; it demonstrates a software positive-control assay for an explicitly resource-coupled outcome, not that a particular physical organism would use negativity as a fitness variable. The default population artifact uses 100 matched seeds per scenario/model, with a cumulative seed-count sensitivity table for selected diagnostics. This is enough to stabilize the benchmark's qualitative checks, but the matched seed labels do not by themselves create a formal paired experiment once trajectories diverge. The shuffled-lineage diagnostic reports 200 permutations per replicate, but stronger inference would still benefit from lineage-aware nulls, additional stochastic replicates for specific effect-size claims, and model sensitivity analysis. The default artifact records interaction exposures but lacks a randomized-neighbor control for controlled interaction-effect claims. The implementation does not model a spatial grid, open-ended novelty, resource metabolism, finite-shot hardware noise, SPAM uncertainty, process tomography, stabilizer-rank simulation, low-magic simulation, tensor-network hardness, or quantum advantage. These are future benchmark modules, not hidden claims of the present artifact.
 
 \section{Conclusion}
 
-QALBench turns QAL reporting into a set of claim-specific audit questions. In the cloned-observable resource kernel, computational-basis inheritance metrics are exactly reproduced by dephased and Markov controls, while noncommuting diagnostics reveal the quantum resource. In the population module, lineage records, no-inheritance controls, shuffled-lineage diagnostics, turnover, mutation, interaction-exposure records, and selection-rule metrics distinguish artificial-life reporting coverage from event-level resource presence. The benchmark result is conservative but useful: basis-only outcomes in cloned-observable protocols of this type should be checked against matched classical controls; quantum-resource claims should be tied to operational diagnostics or certificates; and full QAL claims require both population evidence and resource-specific controls.
+QALBench turns QAL reporting into a tiered set of claim-specific audit tasks. In the cloned-observable resource kernel, computational-basis inheritance metrics are exactly reproduced by dephased and Markov controls, while noncommuting diagnostics reveal the quantum resource. In the population module, lineage records, no-inheritance controls, shuffled-lineage diagnostics, turnover, mutation, interaction-exposure records, and selection-rule metrics distinguish artificial-life reporting coverage from event-level resource presence. The benchmark result is conservative but useful: basis-only outcomes in cloned-observable protocols of this type should be checked against matched classical controls; quantum-resource claims should be tied to operational diagnostics or certificates; population-level claims should report lineage and null records; and stronger hardware or computational claims should be reported as higher-tier tasks rather than inferred from lower-tier evidence.
 
 \section*{Data and Code Availability}
 
 The QALBench implementation used for this draft is maintained in a Git repository intended for public release under the MIT license. At the time of this draft, the public GitHub repository and archival DOI are pending; the release URL and DOI should be inserted here after the repository is made public and the submission package is deposited in a DOI-minting archive.
 
-The canonical resource-kernel artifacts are the sweep CSV, sweep metadata JSON, and associated figures under \path{results/}; paper copies of figures are synced under \path{paper/figures/}. The phase-diagram figure is included as an artifact-level diagnostic for the full resource-kernel sweep but is not used as a main-text result. The current population artifacts are:
+The canonical resource-kernel artifacts are the sweep CSV, sweep metadata JSON, and associated figures under \path{results/}; paper copies of figures are synced under \path{paper/figures/}. These artifacts support the implemented T1--T2 tasks. The phase-diagram figure is included as an artifact-level diagnostic for the full resource-kernel sweep but is not used as a main-text result. The current T3--T4 population artifacts are:
 \begin{itemize}
 \item \path{results/qalbench_population.csv}
 \item \path{results/qalbench_population_timeseries.csv}
