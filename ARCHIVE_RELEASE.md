@@ -1,12 +1,12 @@
 # Archive Release Checklist
 
 - Public repository URL: https://github.com/Gabriel-Kahen/qal-bench
-- Release commit: TBD
+- Release commit: 9715627a0a3fc55ac17f5ce0273ad348fe013bcb
 - Release tag: v0.3.0
 - Release URL: https://github.com/Gabriel-Kahen/qal-bench/releases/tag/v0.3.0
-- Archive DOI: TBD
+- Archive DOI: 10.5281/zenodo.20222166
 - Concept DOI: 10.5281/zenodo.20215830
-- Archive URL: TBD
+- Archive URL: https://zenodo.org/records/20222166
 
 Before tagging:
 
