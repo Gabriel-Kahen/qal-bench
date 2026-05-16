@@ -1,10 +1,10 @@
 {
   "argv": [
-    "scripts/run_qalbench_sweeps.py",
+    ".venv/bin/qalbench-sweep",
     "--sync-package-artifacts"
   ],
   "artifact": "qalbench two-qubit resource-kernel sweep",
-  "command": "scripts/run_qalbench_sweeps.py --sync-package-artifacts",
+  "command": ".venv/bin/qalbench-sweep --sync-package-artifacts",
   "csv_sha256": "3e0a1434e8ad481c399a99dd4ad5e4fe90668a412a5cc2c6ffbaef0b59e0d7e0",
   "figures_sha256": {
     "paper/figures/phase_diagram.png": "74d3c8651e9d431fba24291dc84fb0db1202e7f369831e347fb73d48c87dba95",
@@ -14,7 +14,7 @@
     "results/figures/quantum_diagnostics.png": "afaba9fd918d273f6248bff826dfb4483c4f857ac895344ffdbbac8cfadeee56",
     "results/figures/z_population.png": "7d3b0dc82e1b65e91e8b678338400f2d56a94cf310439b06610ef46140a4bf86"
   },
-  "generated_utc": "2026-05-15T19:09:06.138905+00:00",
+  "generated_utc": "2026-05-16T00:40:19.424031+00:00",
   "paper_figures_synced": true,
   "parameters": {
     "damping_count": 21,
@@ -56,22 +56,24 @@
     "python_full": "3.12.13 (main, Mar  3 2026, 15:35:03) [Clang 21.1.4 ]"
   },
   "source": {
-    "git_commit": "8ff9d2f4df80a4aad65d5b605bf6683de5e9080b",
-    "git_describe": "8ff9d2f",
+    "git_commit": "4aedab6b5a60cef15e0d29dcfb5578889d8699f3",
+    "git_describe": "v0.2.1-5-g4aedab6",
     "git_dirty": false,
     "git_tag": null,
-    "package_version": "0.2.0",
+    "package_version": "0.3.0",
     "source_files_sha256": {
-      ".github/workflows/ci.yml": "512def5bae92fdd3eda71f45ebdc17726e186401e9e64a76916d6e3faaaecf81",
-      ".github/workflows/release-verify.yml": "32d9cf757aec06db845401e24c8a9371d289cc9ecbc248de90a0e76707249434",
+      ".github/workflows/ci.yml": "45951edb8a55914959e59ad11e5771bd2346fbaa3cb0b0e410698e472dadccc5",
+      ".github/workflows/release-verify.yml": "37a993a2ade6613582545fd9140e8d9e62b3b9738d5b9c653a6f9c24a5a3b210",
       ".gitignore": "b68e29594f631a13b5d4f140be66543445a08738e2688577084f3049a6886168",
-      "ARCHIVE_RELEASE.md": "36ed78471963bd245fe5866e0201c462c7e83da14e312757628542d96ce887ab",
-      "CITATION.cff": "e1f7e0576c6c94c6d4a999ace21162aa1ab4859f6d77d608f08c6e2d98043b85",
+      "ARCHIVE_RELEASE.md": "6262abeb8e5a7b47b8dc04202ce338502c65703fae4096e573fd101d7bebd9f1",
+      "CITATION.cff": "048251fc3d212363574e07c15c89f9376c8a1fb7c3c93ec04c30d0abe4967981",
       "LICENSE": "67fe503b5c407bca1c340e14fb7ceb6849b1af4d531a783b30d09cb76e65a3aa",
-      "README.md": "0a3d484b173be9524f72dfade24e5aa540f475487efb6e17ea1c2f85c2982272",
-      "paper/main.tex": "12fdb1d3ff8160f05ae528784cad50b3fa50939b829297f35f50acb47c7e9a32",
+      "README.md": "cde994ad19847d6eb06534baf4b2aec7e383cc9d896a47b8c35188d1d835c409",
+      "docs/submission_schema.md": "cb905427d508e9981cc645275aa55e2fb8fae13f74349d990af9e2d29b32ecb4",
+      "docs/suite_completion_audit.md": "20774090de236a6a1649fb367fb597146e7de6024b8d21b4889dc22ee9db7617",
+      "paper/main.tex": "15077f48e546222dc1439f84f7ae79ceea64da07fbf11c4e87172b594a68f521",
       "paper/references.bib": "2df415192820fed57bc80db2f56703d05a0a008df5510f13e86cb75ac9618742",
-      "pyproject.toml": "4ff3378b76a211bb8dd603d318e051c9893096390db5c9aeed7a1625d70aebee",
+      "pyproject.toml": "ec1e2cf403425268322f7bbc6afc6234778a75f926f90fdcbf44b2d3e75112af",
       "requirements-lock.txt": "cd112a981b12e9faad0c2c518d7fac01b0533ffd799e8b2acc7d9e155cd805c9",
       "requirements.txt": "84f5adebc745706c410125781d91db59b59f4322870a2c53685e0aaefb9b8575",
       "scripts/reproduce_all.sh": "a27ee9056a493dca71f5c9ba978b4ebc575602fe97c5352c1f43cfc2f3690182",
@@ -80,8 +82,10 @@
       "scripts/verify_qalbench_population.py": "bd977dfdde1e7771f6f10382c6869242a2a6d105f001c41c1ee3ec78d7dccf3e",
       "scripts/verify_qalbench_results.py": "929368f7f6f4ccedad1a77435567b71034594cc32543be0ff20e45af8e3fc042",
       "scripts/verify_release_artifacts.sh": "5f5a93a0e55823f7628c9045cb00a2e62a8a622b019328fc0fd209aee1987760",
-      "src/qalbench/README.md": "82a4a9a8377dbb387e2092a70528b6312329dd263a0fed5f62505b1363cf61ab",
-      "src/qalbench/__init__.py": "62a0cc560a681ba2521815b3752f79c0ef1ad3a0b30832623d07bed432bc6916",
+      "src/qalbench/README.md": "1e64fd2631b75386409a46d519475cb280d62c624a1c49976a8ef149c45708a5",
+      "src/qalbench/__init__.py": "2a0d8dbf207d3995501b30b918fa7ec738e7604b10eadcd89660aff1ca9db529",
+      "src/qalbench/baselines.py": "f065041b4d16248966f04646db7efc3fd50f949b2b3af2882a9ca163150848ad",
+      "src/qalbench/certification.py": "baf8533e883654682d0a9ba604e64737cb6dc1f27a3435115834c767898366b4",
       "src/qalbench/channels.py": "c92a0751464a3dcaa8fea980f65285f7716f124e85ae68cb50a0ff9af2614191",
       "src/qalbench/classical.py": "da7da1e573470684007f90d64afdac50480af8f9c2e796717cfed8cc6536f9d7",
       "src/qalbench/gates.py": "d0cbe194d17979f23441619c307ff335377712a6891af7cc0bffcb8bd197abcf",
@@ -90,14 +94,20 @@
       "src/qalbench/population_sweep.py": "80d08a48d7be7335eb0f02421692ad5f69d3b8cea54b39e37c0657cdef2ff5d5",
       "src/qalbench/population_verify.py": "16be378c814075eae3ef037656a6496b3f734f286e80c9fa153f9e41dd2eddc6",
       "src/qalbench/quantum.py": "2986c939e365dd4186e19253ee307817425b8a1f884b1d5b81544149f108d383",
+      "src/qalbench/structured_population.py": "7b08489e7018b9eef45d062b049e1a32cff7d9f2623744c26827042bbb7beece",
+      "src/qalbench/submission.py": "bd7cd6fb1a5decc5c5bbd1c1a85772118379e3675aa214edc25e67dc4795b418",
+      "src/qalbench/suite.py": "088cf040a2f5f98b78b963ad1b87698d7c7a90c1a96f8bda50175078414bc4f2",
       "src/qalbench/sweep.py": "3b920e9f78c9ff141b1e8cfda0f341541e9019a2e24c028af91437e6d6df7762",
+      "src/qalbench/tasks.py": "744e00f61b9eff9d7c6f83b2ebe74ca38f2ccfd916132edf97f9c77a4edddf17",
       "src/qalbench/verify.py": "2d9abf4adca5e26ddb17a15f4698b4557d07913097b3fd9345b761c89021cb1a",
+      "src/qalbench/workflows.py": "43fd4cfb38afa9766302ec52961934e8010110762158b2bdd4e2238ce6dccd9f",
       "tests/test_cli_contract.py": "7b54a330f5d873e51f4c93defe590097dcd95242b06a231b9a6f0cfa34723c9e",
       "tests/test_metrics.py": "757e14de9511cde3f52165731050cea0cb26b2c1263112e400d40d57e702da7b",
       "tests/test_model_baselines.py": "b6f663bc10d643d2935423343e9820583ca99e6f32f19010ab399804e4598490",
       "tests/test_population_model.py": "d06e004dd14a47057e97abc538b784ec18de4400d3352f03b687f23c44503388",
-      "tests/test_population_sweep_contract.py": "ba14bd6786f39042d573be81bfca53975d98622d5aaa9fb11eb44f8442d75b5a"
+      "tests/test_population_sweep_contract.py": "ba14bd6786f39042d573be81bfca53975d98622d5aaa9fb11eb44f8442d75b5a",
+      "tests/test_suite_contract.py": "fffa1440b01beaa7d00ea0dfcc1169aea074677283fa6e50ef6d4ba3364de93d"
     },
-    "source_manifest_sha256": "7ff24bfbaf3aa94c33bd70e832cef25844dac626e46f5ea5c742890be2540bd7"
+    "source_manifest_sha256": "27d71e87d1b7b5e92c6a1070da59a6f223fe0ec55dbbe6671151f4390f36e15b"
   }
 }
