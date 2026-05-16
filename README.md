@@ -13,7 +13,8 @@ QALBench separates three kinds of quantum artificial-life claims:
 - computational nonclassicality: a stronger axis specified as a future
   benchmark requirement, not claimed by the current artifact
 
-The repository contains two implemented benchmark modules.
+The repository contains two canonical artifact modules and a newer reusable
+suite layer.
 
 The resource-kernel module is a QAL-inspired cloned-observable inheritance
 event. It compares:
@@ -29,6 +30,28 @@ capacity-blocked reproduction-opportunity records, and quantum/dephased/classica
 event-resource ablations. It is a population benchmark with event-level quantum
 diagnostics, not an exact many-body quantum state simulation of the whole
 population.
+
+The suite layer generalizes the package beyond the checked-in v0.2 artifacts
+without changing their hash-bound verification contract. It adds:
+
+- a machine-readable T1-T6 task catalog for basis inheritance, mutation,
+  resource diagnostics, population lineage, resource-coupled outcomes,
+  finite-shot hardware certification, and computational-nonclassicality
+  challenges
+- finite-shot certification utilities for copy agreement, outcome histograms,
+  Pauli correlations, CHSH lower bounds, and declared readout mitigation
+- a baseline catalog covering dephased, Markov, separable, entanglement-breaking,
+  stabilizer, low-magic, tensor-network, classical-shadow, and mean-field
+  controls
+- a small exact structurally quantum population register where the population
+  sites are qubits in one joint density matrix
+- JSON submission verification and independent scoring axes for
+  artificial-life adequacy, quantum-resource relevance, and computational
+  nonclassicality
+
+These suite APIs make T5 and T6 submissions auditable, but they do not turn the
+canonical v0.2 resource and population CSVs into hardware-certification or
+quantum-advantage claims.
 
 ## Reproduce Results
 
@@ -180,8 +203,35 @@ python3 -m pip install .
 The package depends on NumPy and Matplotlib so the default commands can write
 CSV and figures. Normal and editable installs expose `qalbench-sweep`,
 `qalbench-verify`, `qalbench-population-sweep`, and
-`qalbench-population-verify` console commands. The repository `scripts/` files
-are thin wrappers around those package-native entry points.
+`qalbench-population-verify` console commands for the canonical artifacts. They
+also expose `qalbench-suite` for the general suite layer:
+
+```bash
+qalbench-suite catalog --include-baselines
+qalbench-suite template t5_finite_shot_resource_certificate --output manifest.json
+qalbench-suite write-resource-kernel-submission --task-id t2_state_resource_diagnostic --output-dir resource-run
+qalbench-suite write-population-submission --task-id t3_population_lineage_audit --output-dir population-run
+qalbench-suite certify-counts counts.json --kind chsh --output certificate.json
+qalbench-suite write-finite-shot-submission counts.json --kind chsh --output-dir finite-shot-run
+qalbench-suite write-finite-shot-submission lineage-counts.json --kind lineage --task-id t5_finite_shot_lineage_certificate --output-dir finite-lineage-run
+qalbench-suite run-structured-population --output-dir structured-run --site-counts 2,3,4
+qalbench-suite write-sampling-challenge-submission --output-dir sampling-run --sizes 2,3,4
+qalbench-suite verify-submission path/to/manifest.json --root path/to/artifacts
+qalbench-suite score-submission path/to/manifest.json --root path/to/artifacts
+```
+
+The built-in resource writer also supports `t1_basis_inheritance_kernel`,
+`t1_mutation_channel_kernel`, `t2_state_resource_diagnostic`, and
+`t2_process_resource_diagnostic`. The population writer supports
+`t3_population_lineage_audit`, `t3_interaction_selection_audit`,
+`t4_resource_coupled_outcome`, and
+`t4_transmission_breaking_resource_control`.
+
+The repository `scripts/` files are thin wrappers around the package-native
+canonical artifact entry points.
+
+The submission manifest and artifact schema for the general suite layer is
+documented in `docs/submission_schema.md`.
 
 The wheel intentionally includes the canonical CSV, compressed row-level
 population artifacts, and figure files so installed verifier commands can audit
@@ -194,10 +244,10 @@ or archive deposit instead of a binary wheel.
 The repository includes `CITATION.cff` and is distributed under the MIT license.
 The source repository is
 [Gabriel-Kahen/qal-bench](https://github.com/Gabriel-Kahen/qal-bench). The
-archival software release is
-[v0.2.1 on Zenodo](https://zenodo.org/records/20215831), with version DOI
-[10.5281/zenodo.20215831](https://doi.org/10.5281/zenodo.20215831). The concept
-DOI for all versions is
+archival software release for the T1--T6 suite layer is
+[v0.3.0](https://github.com/Gabriel-Kahen/qal-bench/releases/tag/v0.3.0). The
+Zenodo version DOI should be added after archival deposit. The concept DOI for
+all versions is
 [10.5281/zenodo.20215830](https://doi.org/10.5281/zenodo.20215830).
 `CITATION.cff` separates the software release citation from the manuscript
 `preferred-citation`.

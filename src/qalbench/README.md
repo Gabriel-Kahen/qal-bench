@@ -5,10 +5,54 @@ artificial-life (QAL) reporting. It includes:
 
 - a two-qubit cloned-observable resource kernel
 - a population-level lineage benchmark with event-level quantum diagnostics
+- a reusable T1-T6 suite layer for task definitions, finite-shot
+  certification, baselines, structured quantum population registers, and
+  submission verification/scoring
 
 The package is designed to separate artificial-life adequacy from
 quantum-resource relevance. It does not claim quantum advantage and does not
 simulate a full many-body population density matrix.
+
+## Suite Layer
+
+The suite layer is separate from the canonical artifact verifiers. It provides
+reusable contracts for external or future submissions:
+
+- `qalbench.tasks`: machine-readable task families across T1-T6
+- `qalbench.certification`: finite-shot intervals, copy-agreement estimates,
+  Pauli-correlation estimates, CHSH certificates, and declared readout
+  mitigation
+- `qalbench.baselines`: quantum-resource and classical-simulator baseline
+  registry plus resource-kernel baseline evaluators
+- `qalbench.structured_population`: small exact fixed-site quantum population
+  dynamics with one joint density matrix
+- `qalbench.submission`: JSON manifest verification and independent scoring
+  for artificial-life adequacy, quantum-resource relevance, and computational
+  nonclassicality
+
+The suite command prints the task/baseline catalog and verifies or scores
+submission manifests:
+
+```bash
+qalbench-suite catalog --include-baselines
+qalbench-suite template t5_finite_shot_resource_certificate --output manifest.json
+qalbench-suite write-resource-kernel-submission --task-id t2_state_resource_diagnostic --output-dir resource-run
+qalbench-suite write-population-submission --task-id t3_population_lineage_audit --output-dir population-run
+qalbench-suite certify-counts counts.json --kind chsh --output certificate.json
+qalbench-suite write-finite-shot-submission counts.json --kind chsh --output-dir finite-shot-run
+qalbench-suite write-finite-shot-submission lineage-counts.json --kind lineage --task-id t5_finite_shot_lineage_certificate --output-dir finite-lineage-run
+qalbench-suite run-structured-population --output-dir structured-run --site-counts 2,3,4
+qalbench-suite write-sampling-challenge-submission --output-dir sampling-run --sizes 2,3,4
+qalbench-suite verify-submission manifest.json --root artifacts/
+qalbench-suite score-submission manifest.json --root artifacts/
+```
+
+The built-in resource writer supports `t1_basis_inheritance_kernel`,
+`t1_mutation_channel_kernel`, `t2_state_resource_diagnostic`, and
+`t2_process_resource_diagnostic`. The population writer supports
+`t3_population_lineage_audit`, `t3_interaction_selection_audit`,
+`t4_resource_coupled_outcome`, and
+`t4_transmission_breaking_resource_control`.
 
 ## Resource Kernel
 
@@ -99,4 +143,25 @@ qalbench-population-sweep
 qalbench-population-verify
 ```
 
+General suite workflow:
+
+```bash
+qalbench-suite catalog --include-baselines
+qalbench-suite template t5_finite_shot_resource_certificate --output manifest.json
+qalbench-suite write-resource-kernel-submission --task-id t2_state_resource_diagnostic --output-dir resource-run
+qalbench-suite write-population-submission --task-id t3_population_lineage_audit --output-dir population-run
+qalbench-suite certify-counts counts.json --kind chsh --output certificate.json
+qalbench-suite write-finite-shot-submission counts.json --kind chsh --output-dir finite-shot-run
+qalbench-suite write-finite-shot-submission lineage-counts.json --kind lineage --task-id t5_finite_shot_lineage_certificate --output-dir finite-lineage-run
+qalbench-suite run-structured-population --output-dir structured-run --site-counts 2,3,4
+qalbench-suite write-sampling-challenge-submission --output-dir sampling-run --sizes 2,3,4
+qalbench-suite verify-submission manifest.json --root artifacts/
+qalbench-suite score-submission manifest.json --root artifacts/
+```
+
+The same T1-T4 task IDs listed above are valid for the resource and population
+submission writers.
+
 The repository wrappers in `scripts/` call the same package-native entry points.
+The general submission schema is documented in `docs/submission_schema.md` in
+the source repository.

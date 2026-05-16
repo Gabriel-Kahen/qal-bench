@@ -10,12 +10,11 @@ contact:
   - family-names: Kahen
     given-names: Gabriel
     email: gabekahen@gmail.com
-version: 0.2.1
-date-released: "2026-05-15"
+version: 0.3.0
+date-released: "2026-05-16"
 license: MIT
 repository-code: "https://github.com/Gabriel-Kahen/qal-bench"
-url: "https://zenodo.org/records/20215831"
-doi: 10.5281/zenodo.20215831
+url: "https://github.com/Gabriel-Kahen/qal-bench/releases/tag/v0.3.0"
 abstract: "A claim-specific audit protocol and reference implementation for separating artificial-life adequacy, quantum-resource relevance, and computational nonclassicality claims in quantum artificial-life experiments."
 keywords:
   - quantum artificial life

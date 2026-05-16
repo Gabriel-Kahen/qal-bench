@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "qalbench"
-version = "0.2.0"
-description = "Claim-specific benchmark suite for quantum artificial-life resource and population dynamics."
+version = "0.3.0"
+description = "Tiered benchmark suite for quantum artificial-life resource, population, certification, and submission audits."
 readme = "README.md"
 requires-python = ">=3.10,<3.13"
 license = { file = "LICENSE" }
@@ -44,6 +44,7 @@ qalbench-sweep = "qalbench.sweep:main"
 qalbench-verify = "qalbench.verify:main"
 qalbench-population-sweep = "qalbench.population_sweep:main"
 qalbench-population-verify = "qalbench.population_verify:main"
+qalbench-suite = "qalbench.suite:main"
 
 [tool.setuptools]
 package-dir = { "" = "src" }
