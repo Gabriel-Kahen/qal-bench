@@ -54,7 +54,7 @@ The suite contract tests cover:
 
 Canonical artifact verifiers remain separate from the suite layer. They are
 run as read-only audit checks to confirm the suite additions did not weaken the
-released v0.2 resource or population artifact contracts.
+released resource or population artifact contracts.
 
 ## Boundary
 

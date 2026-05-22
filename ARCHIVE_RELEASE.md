@@ -23,3 +23,12 @@ After deposit, updated:
 - `paper/main.tex` Data and Code Availability
 - `README.md` Citation and License
 - `CITATION.cff` with DOI metadata
+
+Post-release manuscript state:
+
+- The canonical scientific artifact release remains `v0.3.0`.
+- Run artifact verification from the release tag so source-manifest hashes are
+  checked against the archived source snapshot.
+- Later manuscript-only edits should be archived separately if a venue requires
+  the exact submitted PDF source, while preserving `v0.3.0` as the cited
+  software-evidence release.

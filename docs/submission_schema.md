@@ -5,7 +5,7 @@ manifest is intentionally task-centered: it names one task from
 `qalbench-suite catalog`, declares the claim axes, lists controls and baselines,
 and records paths plus SHA-256 hashes for every required artifact.
 
-The canonical v0.2 CSV artifacts are still verified by `qalbench-verify` and
+The canonical T1--T4 CSV artifacts are still verified by `qalbench-verify` and
 `qalbench-population-verify`. The schema below is for the general suite layer
 used by `qalbench-suite verify-submission` and `qalbench-suite score-submission`.
 
@@ -86,7 +86,7 @@ qalbench-suite write-population-submission --task-id t4_transmission_breaking_re
 
 These commands write a `submission_manifest.json` plus the task-required
 artifacts. They are small reference packages, not replacements for the
-canonical v0.2 release artifacts.
+canonical released T1--T4 artifacts.
 
 The T1 basis package reports computational-basis probabilities and exact
 dephased and diagonal Markov controls. The T1 mutation package reports a

@@ -2,6 +2,11 @@ name: Release Verification
 
 on:
   workflow_dispatch:
+    inputs:
+      ref:
+        description: "Release tag or commit to verify"
+        required: true
+        default: "v0.3.0"
 
 permissions:
   contents: read
@@ -15,6 +20,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v6
+        with:
+          ref: ${{ inputs.ref }}
 
       - name: Set up Python
         uses: actions/setup-python@v6
@@ -25,7 +32,7 @@ jobs:
       - name: Install package and dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install -r requirements-lock.txt
+          python -m pip install -r requirements.txt
           python -m pip install -e .
 
       - name: Run full release verifier

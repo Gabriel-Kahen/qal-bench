@@ -31,7 +31,7 @@ event-resource ablations. It is a population benchmark with event-level quantum
 diagnostics, not an exact many-body quantum state simulation of the whole
 population.
 
-The suite layer generalizes the package beyond the checked-in v0.2 artifacts
+The suite layer generalizes the package beyond the canonical T1--T4 artifacts
 without changing their hash-bound verification contract. It adds:
 
 - a machine-readable T1-T6 task catalog for basis inheritance, mutation,
@@ -50,15 +50,17 @@ without changing their hash-bound verification contract. It adds:
   nonclassicality
 
 These suite APIs make T5 and T6 submissions auditable, but they do not turn the
-canonical v0.2 resource and population CSVs into hardware-certification or
+canonical resource and population CSVs into hardware-certification or
 quantum-advantage claims.
 
 ## Reproduce Results
 
 Create an environment and install dependencies. For reproduction of the
-checked-in scientific artifacts, use the pinned dependency file:
+archived scientific artifacts, first check out the release tag and then use the
+pinned dependency file:
 
 ```bash
+git checkout v0.3.0
 python3.12 -m venv .venv
 .venv/bin/python -m pip install -r requirements-lock.txt
 .venv/bin/python -m pip install -e .
@@ -88,17 +90,25 @@ python3.12 -m venv .venv
 .venv/bin/python -m pip install -e .
 ```
 
-Verify the checked-in artifacts without regenerating them:
+Verify the archived artifacts without regenerating them:
 
 ```bash
 scripts/verify_release_artifacts.sh
 ```
 
 That command runs the unit tests and checks both the resource-kernel and
-population artifacts using `.venv/bin/python` when that environment exists. Use
-it for artifact audit before mutating the results tree. Running bare `python3`
-from the system shell is not expected to work unless that interpreter has the
-pinned dependencies installed.
+population artifacts using `.venv/bin/python` when that environment exists. It
+also checks that the metadata source manifest matches the checked-out release
+source. Use it from the release tag for archival artifact audit before mutating
+the results tree. Post-release manuscript or citation edits on `main` are not
+expected to match the archived source manifest. Running bare `python3` from the
+system shell is not expected to work unless that interpreter has the pinned
+dependencies installed.
+
+The manual `release-verify` GitHub Actions workflow verifies an explicit ref
+(default `v0.3.0`) with the portable dependency bounds in `requirements.txt`.
+The pinned `requirements-lock.txt` path remains the recorded macOS arm64
+environment for exact local archive reproduction.
 
 Run the full regeneration pipeline:
 
