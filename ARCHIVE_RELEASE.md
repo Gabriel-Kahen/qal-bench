@@ -7,6 +7,9 @@
 - Archive DOI: 10.5281/zenodo.20222166
 - Concept DOI: 10.5281/zenodo.20215830
 - Archive URL: https://zenodo.org/records/20222166
+- Manuscript preprint DOI: 10.5281/zenodo.20350285
+- Manuscript preprint concept DOI: 10.5281/zenodo.20350284
+- Manuscript preprint URL: https://zenodo.org/records/20350285
 
 Before tagging:
 
@@ -27,6 +30,8 @@ After deposit, updated:
 Post-release manuscript state:
 
 - The canonical scientific artifact release remains `v0.3.0`.
+- The manuscript preprint is archived separately from the software artifact on
+  Zenodo record 20350285.
 - Run artifact verification from the release tag so source-manifest hashes are
   checked against the archived source snapshot.
 - Later manuscript-only edits should be archived separately if a venue requires

@@ -26,11 +26,12 @@ keywords:
 preferred-citation:
   type: generic
   title: "QALBench: A Tiered Audit Benchmark and Reference Implementation for Quantum Artificial-Life Claims"
+  doi: 10.5281/zenodo.20350285
   authors:
     - family-names: Kahen
       given-names: Gabriel
       email: gabekahen@gmail.com
   year: 2026
   month: 5
-  url: "https://github.com/Gabriel-Kahen/qal-bench"
+  url: "https://zenodo.org/records/20350285"
   abstract: "A paper and reference implementation for separating population-level artificial-life records, quantum-resource ablations, and computational-nonclassicality claims in quantum artificial-life experiments."

@@ -254,10 +254,12 @@ or archive deposit instead of a binary wheel.
 The repository includes `CITATION.cff` and is distributed under the MIT license.
 The source repository is
 [Gabriel-Kahen/qal-bench](https://github.com/Gabriel-Kahen/qal-bench). The
+manuscript preprint is archived on Zenodo with DOI
+[10.5281/zenodo.20350285](https://doi.org/10.5281/zenodo.20350285). The
 archival software release for the T1--T6 suite layer is
 [v0.3.0 on Zenodo](https://zenodo.org/records/20222166), with version DOI
 [10.5281/zenodo.20222166](https://doi.org/10.5281/zenodo.20222166). The concept
-DOI for all versions is
+DOI for all software versions is
 [10.5281/zenodo.20215830](https://doi.org/10.5281/zenodo.20215830).
 `CITATION.cff` separates the software release citation from the manuscript
 `preferred-citation`.
